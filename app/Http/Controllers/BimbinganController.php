@@ -13,7 +13,7 @@ class BimbinganController extends Controller
     public function __construct()
     {
         // $this->middleware('auth:dosen');
-        // $this->middleware('auth:web')->only(['index']);
+        $this->middleware('auth:dosen')->only(['indexDosen']);
     }
 
     public function indexMahasiswa()
@@ -26,5 +26,15 @@ class BimbinganController extends Controller
 
         $data['bimbingans'] =  Bimbingan::where('mahasiswa_id', $mahasiswaId['id'])->get();
         return view('bimbingan.index', $data);
+    }
+
+    public function indexDosen()
+    {
+        $dosen_id = Auth::user()->id;
+
+        $data['bimbingans'] = Bimbingan::where('dosen_id', $dosen_id)->get();
+        // dd($dosen_id);
+        // dd($data['bimbingans']);
+        return view('bimbingan.indexDosen', $data);
     }
 }

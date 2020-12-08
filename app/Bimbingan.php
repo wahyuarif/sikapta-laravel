@@ -17,4 +17,9 @@ class Bimbingan extends Model
         'tgl_bimbingan',
         'status'
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
+    }
 }

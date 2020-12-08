@@ -158,13 +158,28 @@ class PengajuanController extends Controller
         return view('pengajuan.show', $data);
     }
 
-    public function terima($id)
+    public function terima(Request $request, $id)
     {
+        $this->validate($request, [
+            'dosen_id' => 'required'
+        ]);
+
         $pengajuan = Pengajuan::find($id);
-
         $pengajuan->status = 'Diterima';
-
         $pengajuan->save();
+
+        $bimbingan = [
+            'kd_bimbingan' => rand(),
+            'pengajuan_id' => $request->pengajuan_id,
+            'dosen_id' => $request->dosen_id,
+            'mahasiswa_id' => $request->mahasiswa_id,
+            'bab' => 1,
+            'bahasan' => null,
+            'tgl_bimbingan' => null,
+            'status' => 'Bimbingan',
+        ];
+
+        Bimbingan::create($bimbingan);
 
         Session::flash('msg', 'Pengajuan Berhasil Diterima');
 
@@ -174,9 +189,7 @@ class PengajuanController extends Controller
     public function tolak($id)
     {
         $pengajuan = Pengajuan::find($id);
-
         $pengajuan->status = 'Ditolak';
-
         $pengajuan->save();
 
         Session::flash('msg', 'Pengajuan Berhasil Ditolak');

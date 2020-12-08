@@ -74,10 +74,12 @@
                     </table>
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ route('pengajuan.terima', ['id' => $pengajuan->id]) }}" class="btn btn-primary">Terima</a>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#terimaModal">
+                        Terima
+                    </button>
                     <!-- <a href="{{ route('pengajuan.terimaSyarat', ['id' => $pengajuan->id]) }}" class="btn btn-warning">Terima Dengan Syarat</a> -->
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#syaratModal">
-                        Import Excel
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#syaratModal">
+                        Terima Syarat
                     </button>
                     <a href="{{ route('pengajuan.tolak', ['id' => $pengajuan->id]) }}" class="btn btn-danger">Tolak</a>
                 </div>
@@ -91,7 +93,7 @@
 @endsection
 
 
-<!-- Modal -->
+<!-- Modal Terima Syaray-->
 <div class="modal fade" id="syaratModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <form action="{{ route('pengajuan.terimaSyarat', ['id' => $pengajuan->id]) }}" method="post">
@@ -113,6 +115,44 @@
         <div class="form-group">
            <textarea name="syarat" class="form-control is-invalid" id="validationTextarea" required value="{{ old('syarat') }}" ></textarea>
         </div>
+        <label> Dosen  </label>
+        <div class="form-group">
+           <select name="dosen_id" id="" class="form-control">
+             <option>Dosen Pembimbing</option>
+             @foreach($dosens as $dosen)
+              <option value="{{ $dosen->id }}">{{ $dosen->nm_dosen }}</option>
+             @endforeach
+           </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Terima-->
+<div class="modal fade" id="terimaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <form action="{{ route('pengajuan.terima', ['id' => $pengajuan->id]) }}" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Diterima</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        
+        <input type="hidden" name="pengajuan_id" value="{{ $pengajuan->id }}">
+        <input type="hidden" name="mahasiswa_id" value="{{ $pengajuan->mahasiswa_id }}">
+
         <label> Dosen  </label>
         <div class="form-group">
            <select name="dosen_id" id="" class="form-control">

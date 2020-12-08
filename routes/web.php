@@ -77,7 +77,7 @@ Route::prefix('pengajuan')->group(function(){
     // Dosen Page
     Route::get('/', 'PengajuanController@index')->name('pengajuan');
     Route::get('/show/{id}' , 'PengajuanController@show')->name('pengajuan.show');
-    Route::get('/terima/{id}', 'PengajuanController@terima')->name('pengajuan.terima');
+    Route::put('/terima/{id}', 'PengajuanController@terima')->name('pengajuan.terima');
     Route::put('/terimaSyarat/{id}', 'PengajuanController@terimaSyarat')->name('pengajuan.terimaSyarat');
     Route::get('/tolak/{id}', 'PengajuanController@tolak')->name('pengajuan.tolak');
     // Pengajuan Mahasiswa
@@ -90,4 +90,5 @@ Route::prefix('pengajuan')->group(function(){
 
 Route::prefix('bimbingan')->group(function(){
     Route::get('/mahasiswa', 'BimbinganController@indexMahasiswa')->name('bimbingan.mahasiswa');
+    Route::get('/dosen', 'BimbinganController@indexDosen')->name('bimbingan.dosen');
 });
