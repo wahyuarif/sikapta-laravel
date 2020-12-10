@@ -1,87 +1,68 @@
-@extends('layouts.app')
+
+
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row">
-      
-         {{-- notifikasi sukses --}}
-        @if ($msg = Session::get('msg'))
-        <div class="alert alert-warning alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
-            <strong>{{ $msg }}</strong>
-        </div>
-        @endif
-
-
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+            <div class="col-lg-9">
+                <div class="p-5">
+                    <div class="text-center">
+                        <img src="{{ asset('img/sikapta-logo.png') }}" alt="" class="img-fluids" width="150">
+                        <h1 class="h4 text-gray-900 my-4">Registrasi Akun Sikapta Unsiq</h1>
+                    </div>
+                    <form class="user" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
+        
                         <div class="form-group{{ $errors->has('nim') ? ' has-error' : '' }}">
-                            <label for="nim" class="col-md-4 control-label">nim</label>
-
-                            <div class="col-md-6">
-                                <input id="nim" type="text" class="form-control" name="nim" value="{{ old('nim') }}" required autofocus>
-
+                            
+                                <input id="nim" type="nim" placeholder="Your Name" class="form-control form-control-user" name="nim" value="{{ old('nim') }}" autofocus>
+        
                                 @if ($errors->has('nim'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('nim') }}</strong>
+                                        <strong class="text-danger ml-3 mt-2">{{ $errors->first('nim') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                         
                         </div>
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
+                            
+                                <input id="email" type="email" placeholder="Enter Email Address..." class="form-control form-control-user" name="email" value="{{ old('email') }}" autofocus>
+        
                                 @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong class="text-danger ml-3 mt-2">{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                         
                         </div>
-
+        
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            
+                            <input id="password" type="password" placeholder="Password" class="form-control form-control-user" name="password">
+        
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong class="text-danger ml-3">{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        
                         </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
+                        <div class="form-group{{ $errors->has('password-confirm') ? ' has-error' : '' }}">
+                            <input id="password-confirm" type="password" placeholder="Password Confirmation" class="form-control form-control-user" name="password_confirmation">                
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
+        
+        
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Register
+                        </button>
+                        
                     </form>
+                    
+                    <div class="text-center">
+                        Sudah punya akun?
+                        <a class="link mt-3" href="{{ route('login') }}"> Login di sini.</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+      
+
 @endsection

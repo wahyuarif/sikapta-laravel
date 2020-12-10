@@ -14,4 +14,9 @@ class Dosen extends Model
         'status',
         'jabatan'
     ];
+
+    public function bimbingan()
+    {
+        return $this->hasMany(Bimbingan::class);
+    }
 }

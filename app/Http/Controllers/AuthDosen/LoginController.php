@@ -75,7 +75,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard('kaprodi')->logout();
+        Auth::guard('dosen')->logout();
 
 //        $request->session()->invalidate();
 

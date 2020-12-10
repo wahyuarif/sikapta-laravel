@@ -12,8 +12,9 @@ class BimbinganController extends Controller
     //
     public function __construct()
     {
-        // $this->middleware('auth:dosen');
         $this->middleware('auth:dosen')->only(['indexDosen']);
+        $this->middleware('auth:web')->only(['indexMahasiswa']);
+        
     }
 
     public function indexMahasiswa()
@@ -24,7 +25,9 @@ class BimbinganController extends Controller
         // dd($mahasiswaId['id']);
         // dd($dosenId);
 
-        $data['bimbingans'] =  Bimbingan::where('mahasiswa_id', $mahasiswaId['id'])->get();
+        $data['bimbingans'] =  Bimbingan::where([
+            'mahasiswa_id'=> $mahasiswaId['id'],
+            ])->get();
         return view('bimbingan.index', $data);
     }
 
@@ -36,5 +39,10 @@ class BimbinganController extends Controller
         // dd($dosen_id);
         // dd($data['bimbingans']);
         return view('bimbingan.indexDosen', $data);
+    }
+
+    public function terimaBab()
+    {
+        
     }
 }

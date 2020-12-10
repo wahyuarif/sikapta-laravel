@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dosen')
 
 @section('content')
 <div class="container">
@@ -156,7 +156,7 @@
         <label> Dosen  </label>
         <div class="form-group">
            <select name="dosen_id" id="" class="form-control">
-             <option>Dosen Pembimbing</option>
+             <option value="">Dosen Pembimbing</option>
              @foreach($dosens as $dosen)
               <option value="{{ $dosen->id }}">{{ $dosen->nm_dosen }}</option>
              @endforeach

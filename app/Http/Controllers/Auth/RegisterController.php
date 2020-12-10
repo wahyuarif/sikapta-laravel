@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-
-use App\Mahasiswa;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nim' => 'required|string|max:255|unique:mahasiswas,nim',
+            'nim' => 'required|string|max:255|unique:users,nim',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -64,6 +62,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
 
         return User::create([
             'nim' => $data['nim'],
