@@ -37,8 +37,10 @@ class BimbinganController extends Controller
         return view('bimbingan.indexDosen', $data);
     }
 
-    public function uploadBab()
+    public function uploadBab(Request $request, $id)
     {
-        
+        Bimbingan::update([
+            'file_bab' => $request->file_name
+        ]);       
     }
 }

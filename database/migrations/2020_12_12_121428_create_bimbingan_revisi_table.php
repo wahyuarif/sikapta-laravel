@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRevisisTable extends Migration
+class CreateBimbinganRevisiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRevisisTable extends Migration
      */
     public function up()
     {
-        Schema::create('revisis', function (Blueprint $table) {
+        Schema::create('bimbingan_revisi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_revisi');
-            $table->string('catatan');
+            $table->integer('bimbingan_id')->unsigned();
+            $table->integer('revisi_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRevisisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('revisis');
+        Schema::dropIfExists('bimbingan_revisi');
     }
 }

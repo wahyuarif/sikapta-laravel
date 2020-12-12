@@ -13,6 +13,7 @@
 
 // use Symfony\Component\Routing\Route;
 
+use App\Bimbingan;
 use App\Pengajuan;
 use Illuminate\Support\Facades\Route;
 
@@ -93,4 +94,16 @@ Route::prefix('pengajuan')->group(function(){
 Route::prefix('bimbingan')->group(function(){
     Route::get('/mahasiswa', 'BimbinganController@indexMahasiswa')->name('bimbingan.mahasiswa');
     Route::get('/dosen', 'BimbinganController@indexDosen')->name('bimbingan.dosen');
+});
+
+
+Route::get('/revisi', function(){
+   $bimbingan = Bimbingan::findOrFail(1);
+   
+   $bimbingan->revisi()->create([
+        'file_revisi' => 'blabla.pdf',
+        'catatan' => 'lorem ipsum'
+   ]);
+
+   return "success";
 });

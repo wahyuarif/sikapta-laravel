@@ -34,6 +34,11 @@
                                     <td>{{ $bimbingan->status }}</td>
                                 </tr>
                             </table>
+
+                            @foreach($bimbingan->revisi as $revisi)
+                                {{ $revisi->catatan }}
+                            @endforeach
+
                             <p>
                                 Note: Pilih Upload jika akan melakukan bimbingan secara online atau pilih buat janji untuk bimbingan secara tatap muka
                             </p>

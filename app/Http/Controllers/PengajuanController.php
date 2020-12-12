@@ -22,12 +22,18 @@ class PengajuanController extends Controller
 
      public function __construct()
      {
-         $this->middleware('auth:dosen')->except(['kerjaPraktek', 'kpSubmit']);
+         $this->middleware('auth:dosen')->except(['kerjaPraktek', 'kpSubmit', 'status']);
          $this->middleware('auth:web')->only(['kerjaPraktek', 'kpSubmit', 'status']);
      }
 
     public function status()
     {
+        $id = Auth::user()->mahasiswa_id;
+        $data['ditolak'] = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'status' => 'Ditolak'
+        ])->count();
+        
         $id = Auth::user()->mahasiswa_id;
         $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
 
