@@ -33,7 +33,6 @@ class CreateBimbingansTable extends Migration
                 ->onDelete('cascade');
             $table->integer('bab')->nullable();
             $table->string('file_bimbingan')->nullable();
-            $table->string('bahasan')->nullable();
             $table->date('tgl_bimbingan')->nullable();
             $table->string('status');
             $table->timestamps();

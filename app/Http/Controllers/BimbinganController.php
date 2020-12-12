@@ -19,14 +19,10 @@ class BimbinganController extends Controller
 
     public function indexMahasiswa()
     {
-        $nim = Auth::user()->nim;
-        $mahasiswaId = Mahasiswa::where('nim', $nim)->first();
-
-        // dd($mahasiswaId['id']);
-        // dd($dosenId);
+        $id = Auth::user()->mahasiswa_id;
 
         $data['bimbingans'] =  Bimbingan::where([
-            'mahasiswa_id'=> $mahasiswaId['id'],
+            'mahasiswa_id'=> $id,
             ])->get();
         return view('bimbingan.index', $data);
     }
@@ -41,7 +37,7 @@ class BimbinganController extends Controller
         return view('bimbingan.indexDosen', $data);
     }
 
-    public function terimaBab()
+    public function uploadBab()
     {
         
     }

@@ -28,6 +28,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/persyaratan', 'HomeController@persyaratan')->name('persyaratan');
 Route::get('/tolak', 'HomeController@tolak')->name('home.tolak');
 Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -76,6 +77,7 @@ Route::prefix('sks')->group(function(){
 Route::prefix('pengajuan')->group(function(){
     // Dosen Page
     Route::get('/', 'PengajuanController@index')->name('pengajuan');
+    Route::get('/status', 'PengajuanController@status')->name('pengajuan.status');
     Route::get('/show/{id}' , 'PengajuanController@show')->name('pengajuan.show');
     Route::put('/terima/{id}', 'PengajuanController@terima')->name('pengajuan.terima');
     Route::put('/terimaSyarat/{id}', 'PengajuanController@terimaSyarat')->name('pengajuan.terimaSyarat');

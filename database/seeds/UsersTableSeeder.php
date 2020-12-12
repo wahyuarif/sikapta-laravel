@@ -18,11 +18,6 @@ class UsersTableSeeder extends Seeder
         User::truncate();
         Admin::truncate();
         Dosen::truncate();
-        $user = [
-            'nim' => '2019150080',
-            'email' => 'user@mail.com',
-            'password' => bcrypt('password')
-        ];
 
         $admin = [
             'name' => 'Admin',
@@ -51,7 +46,6 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password')
         ];
 
-        User::insert($user);
         Admin::insert($admin);
         Dosen::insert($dosen);
         Dosen::insert($kaprodi);

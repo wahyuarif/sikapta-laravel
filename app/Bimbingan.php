@@ -13,8 +13,7 @@ class Bimbingan extends Model
         'mahasiswa_id',
         'dosen_id',
         'bab',
-        'bahasan',
-        'tgl_bimbingan',
+        'revisi_id',
         'status'
     ];
 

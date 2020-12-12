@@ -24,4 +24,8 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(Prodi::class);
     }
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

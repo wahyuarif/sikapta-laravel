@@ -30,20 +30,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        $nim = Auth::user()->nim;
-        $mhs = Mahasiswa::where('nim', $nim)->first();
+        $id = Auth::user()->mahasiswa->id;
+        $nim = Auth::user()->mahasiswa->nim;
         $sks = Sks::where('nim', $nim)->first();
-        $pengajuan = Pengajuan::where('mahasiswa_id', $mhs['id'])->count();
-        $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $mhs['id'])->get();
-        $terima = Pengajuan::where([
-            'mahasiswa_id'=> $mhs['id'],
-            'status' => 'Diterima'
-        ])->count();
-
-        // dd($mhs['id']);
-        
-        // dd($terima);
-        // dd($pengajuan);
+        $pengajuan = Pengajuan::where('mahasiswa_id', $id)->count();
 
         if ($pengajuan == null) {
             if ( $sks['jml_sks'] >= 20 ) {
@@ -51,14 +41,14 @@ class HomeController extends Controller
             }else{
                 return view('user.homeElse');
             }
-        }else if ($terima == 1) {
+        }else{
+            return view('user.home');
+        }
+    }
 
-            Session::flash('msg', 'Selamat ,Pengajuan anda telah diterima oleh kaprodi, anda bisa memulai bimbingan kerja praktek');
-
-            return redirect(route('bimbingan.mahasiswa'));
-        }else {
-            return view('user.status' , $data);        
-        }////
+    public function persyaratan()
+    {
+        return view('user.persyaratan');
     }
 
     public function tolak()

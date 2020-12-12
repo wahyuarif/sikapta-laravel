@@ -2,21 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="row mt-4">
+        <div class="col-md-12">
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Mohon Maaf</h4>
+            <p>anda belum memenuhi syarat untuk mengajukan Kerja Praktek atau Tugas Akhir , silahkan cek cek kembali syarat-syarat da ketentuan.</p>
+            <hr>
+            <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae illum rem minus deserunt totam eveniet ipsum quaerat voluptate corporis recusandae impedit doloribus, veniam, natus tempora voluptas inventore expedita aut ea?</p>
+        </div>
 
-                    Kamu Belum Memenuhi syarat untuk memulai Kerja Praktek
-                </div>
-            </div>
         </div>
     </div>
 </div>

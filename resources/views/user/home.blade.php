@@ -1,28 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-md-offset-2">
-            @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-            @endif
-            <!-- Default Card Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Home</h6>
-                </div>
-                <div class="card-body">
-                    Anda Sudah memenuhi Syarat Kerja Praktek 
-                    Silahkan Membayar Biaya KP ke rekening xxxx
+<div class="row mt-2">
+    <div class="col-12">
+        <p>Dashborad</p>
+        <h4>Selamat Datang, {{ Auth::user()->mahasiswa->nama }}</h4>
+        <hr>
+    </div>
+</div>
 
-                    <br>
-                    <a href="{{ route('pengajuan.kerjaPraktek') }}" class="btn btn-primary">Skip</a>
+<div class="row mt-2">
+    <div class="col-sm-3 col-sm-6 mt-3">
+        <a href="{{ route('persyaratan') }}" class="btn">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{{ asset('icon/svg/accept.svg') }}" alt="" class="img-fluid" width="100">
+                        </div>
+                        <div class="col-6 d-flex-row ">
+                        <h4 class="text-left font-weight-bold text-primary">Persyaratan</h4>
+                            <p class="text-left">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-sm-6 mt-3">
+        <a href="{{ route('pengajuan.kerjaPraktek') }}" class="btn">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{{ asset('icon/svg/creative-idea.svg') }}" alt="" class="img-fluid" width="100">
+                        </div>
+                        <div class="col-6 d-flex-row ">
+                        <h4 class="text-left font-weight-bold text-primary">Kerja Praktek</h4>
+                            <p class="text-left">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-sm-6 mt-3">
+        <a href="{{ route('bimbingan.mahasiswa') }}" class="btn">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{{ asset('icon/svg/calendar.svg') }}" alt="" class="img-fluid" width="100">
+                        </div>
+                        <div class="col-6 d-flex-row ">
+                        <h4 class="text-left font-weight-bold text-primary">Bimbingan</h4>
+                            <p class="text-left">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-sm-6 mt-3">
+        <a href="www.google.com" class="btn">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{{ asset('icon/svg/database.svg') }}" alt="" class="img-fluid" width="100">
+                        </div>
+                        <div class="col-6 d-flex-row ">
+                        <h4 class="text-left font-weight-bold text-primary">Tugas Akhir</h4>
+                            <p class="text-left">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
     </div>
 </div>
 @endsection

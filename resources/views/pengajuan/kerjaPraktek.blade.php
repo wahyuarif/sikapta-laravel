@@ -1,8 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
+<div class="row mt-2">
+    <div class="col-12">
+        <h4>Pengajuan Kerja Praktek</h4>
+        <hr>
+    </div>
+</div>
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Anda Sudah Memenuhi Syarat Untuk Pengajuan Kerja Praktek</h4>
+  <p>
+      Jika membutuhkan Surat ijin survey silahkan download
+  </p>                 
+  <hr>
+    <a href="" class="btn btn-success">
+       <i class="fas fa-download"></i> Download Surat Ijin Survey
+    </a>
+  
+</div>
+
+    <div class="row mt-3">
       
          {{-- notifikasi sukses --}}
         @if ($msg = Session::get('msg'))
@@ -12,19 +30,19 @@
         </div>
         @endif
 
-
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Pengajuan Kerja Praktek</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('pengajuan.kpSubmit') }}" enctype="multipart/form-data">
+        <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Pengajuan Kerja Praktek</h6>
+            </div>
+            <div class="card-body">
+            <form class="form-horizontal" method="POST" action="{{ route('pengajuan.kpSubmit') }}" enctype="multipart/form-data">
                         {{ csrf_field() }} {{ method_field('POST') }}
 
-                        <div class="form-group">
-                            <label for="judul" class="col-md-4 control-label">Judul</label>
+                        <div class="form-group row">
+                            <label for="judul" class="col-sm-4 col-form-label text-right">Judul</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input 
                                     id="judul" 
                                     type="text" 
@@ -39,10 +57,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="bidang_pekerjaan" class="col-md-4 control-label">Bidang Pekerjaan</label>
+                        <div class="form-group row">
+                            <label for="bidang_pekerjaan" class="col-sm-4 col-form-label text-right">Bidang Pekerjaan</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input id="bidang_pekerjaan" type="text" 
                                     class="form-control {{ $errors->has('bidang_pekerjaan') ? ' is-invalid' : '' }}" 
                                     name="bidang_pekerjaan" 
@@ -57,10 +75,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="deskripsi" class="col-md-4 control-label">Deskripsi</label>
+                        <div class="form-group row">
+                            <label for="deskripsi" class="col-sm-4 col-form-label text-right">Deskripsi</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                             <textarea 
                                 name="deskripsi" 
                                 class="form-control {{ $errors->has('deskripsi') ? ' is-invalid' : '' }}" 
@@ -76,10 +94,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="jml_pegawai" class="col-md-4 control-label">Jumlah Pegawai</label>
+                        <div class="form-group row">
+                            <label for="jml_pegawai" class="col-sm-4 col-form-label text-right">Jumlah Pegawai</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input 
                                 id="jml_pegawai"
                                 type="number" 
@@ -96,10 +114,10 @@
                         </div>
 
 
-                        <div class="form-group">
-                            <label for="kompleksitas_pekerjaan" class="col-md-4 control-label">kompleksitas Pekerjaan</label>
+                        <div class="form-group row">
+                            <label for="kompleksitas_pekerjaan" class="col-sm-4 col-form-label text-right">kompleksitas Pekerjaan</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input 
                                 id="kompleksitas_pekerjaan" 
                                 type="text" 
@@ -115,10 +133,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="lokasi" class="col-md-4 control-label">Lokasi</label>
+                        <div class="form-group row">
+                            <label for="lokasi" class="col-sm-4 col-form-label text-right">Lokasi</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input id="lokasi" 
                                 type="text" 
                                 class="form-control{{ $errors->has('lokasi') ? ' is-invalid' : '' }}" 
@@ -133,10 +151,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="nm_instansi" class="col-md-4 control-label">Nama Instansi</label>
+                        <div class="form-group row">
+                            <label for="nm_instansi" class="col-sm-4 col-form-label text-right">Nama Instansi</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input 
                                 id="nm_instansi" 
                                 type="text" 
@@ -152,10 +170,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="phone" class="col-md-4 control-label">No Telp Instansi</label>
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-4 col-form-label text-right">No Telp Instansi</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input id="phone" 
                                 type="text" 
                                 class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" 
@@ -170,10 +188,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="kerangka_pikir" class="col-md-4 control-label">kerangka Pikir</label>
+                        <div class="form-group row">
+                            <label for="kerangka_pikir" class="col-sm-4 col-form-label text-right">kerangka Pikir</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-8">
                                 <input id="kerangka_pikir" 
                                 type="file" 
                                 class="form-control{{ $errors->has('kerangka_pikir') ? ' is-invalid' : '' }}" 
@@ -188,17 +206,16 @@
                         </div>
 
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                        <div class="form-group row">
+                            <div class="col-sm-10 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Ajukan
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
             </div>
         </div>
-    </div>
-</div>
+        </div>
+
 @endsection

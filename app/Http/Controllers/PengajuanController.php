@@ -23,20 +23,22 @@ class PengajuanController extends Controller
      public function __construct()
      {
          $this->middleware('auth:dosen')->except(['kerjaPraktek', 'kpSubmit']);
-         $this->middleware('auth:web')->only(['kerjaPraktek', 'kpSubmit']);
+         $this->middleware('auth:web')->only(['kerjaPraktek', 'kpSubmit', 'status']);
      }
+
+    public function status()
+    {
+        $id = Auth::user()->mahasiswa_id;
+        $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
+
+        return view('pengajuan.status', $data);
+    }
 
     public function index()
     {
-
-        // $this->middleware('auth:dosen');
         $dosenId = Auth::user()->id;
 
-        $dosen = Dosen::where('id',$dosenId)->first();
-
-        // dd($dosen['jabatan']);
-
-        if ($dosen->jabatan == 'kaprodi' OR $dosen->jabatan == 'dekan') {
+        if (Auth::user()->jabatan == 'kaprodi' OR Auth::user()->jabatan == 'dekan') {
             
             $data['pengajuans'] =  Pengajuan::where([
                 ['dosen_id' ,'=', $dosenId],
@@ -56,7 +58,21 @@ class PengajuanController extends Controller
 
     public function kerjaPraktek()
     {
-        return view('pengajuan.kerjaPraktek');
+        $id = Auth::user()->mahasiswa_id;
+        $pengajuan = Pengajuan::where('mahasiswa_id', $id)->count();
+
+        $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
+ 
+        $data['ditolak'] = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'status' => 'Ditolak'
+        ])->count();
+
+        if ($pengajuan == null) {
+            return view('pengajuan.kerjaPraktek');
+        }else{
+            return view('pengajuan.status' , $data);
+        }
     }
 
     public function kpSubmit(Request $request)
@@ -74,9 +90,9 @@ class PengajuanController extends Controller
         ]);
 
         // dd($request->file('kerangka_pikir')->getClientOriginalName());
-        $nim = Auth::user()->nim;
+        $nim = Auth::user()->mahasiswa->nim;
 
-        $kerangkaPikir = $this->uploadFile($nim, $request->file('kerangka_pikir'));
+        $kerangkaPikir = $this->_uploadFile($nim, $request->file('kerangka_pikir'));
 
         // dd($kerangkaPikir);
 
@@ -133,10 +149,10 @@ class PengajuanController extends Controller
 
         Session::flash('msg', 'Berhasil Ditambah');
 
-        return redirect(route('home'));
+        return redirect(route('pengajuan.status'));
     }
 
-    private function uploadFile($nim, $kerangkaPikir)
+    private function _uploadFile($nim, $kerangkaPikir)
     {
 
         $nama = $nim.rand(). '.' . $kerangkaPikir->getClientOriginalExtension();
@@ -174,7 +190,6 @@ class PengajuanController extends Controller
             'dosen_id' => $request->dosen_id,
             'mahasiswa_id' => $request->mahasiswa_id,
             'bab' => 1,
-            'bahasan' => null,
             'tgl_bimbingan' => null,
             'status' => 'Bimbingan',
         ];
@@ -217,7 +232,7 @@ class PengajuanController extends Controller
             'dosen_id' => $request->dosen_id,
             'mahasiswa_id' => $request->mahasiswa_id,
             'bab' => 1,
-            'bahasan' => null,
+
             'tgl_bimbingan' => null,
             'status' => 'Bimbingan',
         ];
