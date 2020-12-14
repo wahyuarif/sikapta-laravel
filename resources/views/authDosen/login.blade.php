@@ -1,69 +1,54 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dosen Login</div>
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="p-5">
+            <div class="text-center">
+                <img src="{{ asset('img/sikapta-logo.png') }}" alt="" class="img-fluids" width="150">
+                <h1 class="h4 text-gray-900 my-4">Selamat Datang di Sikapta Unsiq</h1>
+            </div>
+            <form class="user" method="POST" action="{{ route('dosen.login.submit') }}">
+                {{ csrf_field() }}
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('dosen.login.submit') }}">
-                        {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    
+                        <input id="email" type="email" placeholder="Enter Email Address..." class="form-control form-control-user" name="email" value="{{ old('email') }}" autofocus>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('dosen.password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong class="text-danger ml-3 mt-2">{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                 
                 </div>
+
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    
+                        <input id="password" type="password" placeholder="Password" class="form-control form-control-user" name="password">
+
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong class="text-danger ml-3">{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                
+                </div>
+
+
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Login
+                </button>
+                
+            </form>
+            <div class="text-center mt-3">
+                <a class="small" href="forgot-password.html">Forgot Password?</a>
+            </div>
+            <hr>
+            <div class="text-center">
+                Jika belum memiliki Dosen SIKAPTA, silahkan hubungi admin SIKAPTA.
+              
             </div>
         </div>
     </div>
-</div>
 @endsection

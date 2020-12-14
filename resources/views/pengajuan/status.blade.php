@@ -8,12 +8,26 @@
     </div>
 </div>
 
-@if($ditolak >= 1)
+
+@if(count($terima) >= 1)
+
+<div class="alert alert-primary" role="alert">
+  <h4 class="alert-heading">Pengajuan Diterima</h4>
+  <p>
+    Pengajuan dengan judul <b>{{ $terima[0]->judul }}</b> telah diterima oleh kaprodi silahkan ke menu bimbinan untuk melakukan bimbingan
+  </p>                 
+  <hr>
+    <a href="{{ route('bimbingan.mahasiswa') }}" class="btn btn-primary btn-sm">Bimbingan</a>
+    </a>
+  
+</div>
+
+@elseif(count($ditolak) >= 1)
 
 <div class="alert alert-warning" role="alert">
-  <h4 class="alert-heading">Pengajuan anda ditolak oleh kaprodi</h4>
+  <h4 class="alert-heading">Pengajuan Ditolak ditolak</h4>
   <p>
-      
+    Pengajuan dengan judul <b>{{ $ditolak[0]->judul }}</b> telah ditolak oleh kaprodi silahkan mengajukan bimbingan kembali
   </p>                 
   <hr>
     <a href="{{ route('pengajuan.kerjaPraktekSecond') }}" class="btn btn-primary btn-sm">Pengajuan Kembali</a>
@@ -24,8 +38,8 @@
 
 <div class="row mt-3">
     <div class="col-12">
-        <div class="card">
-            @foreach($pengajuans as $pengajuan)
+        @foreach($pengajuans as $pengajuan)
+        <div class="card alert-{{ ($pengajuan->status == 'Ditolak') ? 'danger' : 'success' }}">
             <div class="card-body">
                 <h5> {{$pengajuan->judul}} </h5>
                 <hr>
@@ -58,8 +72,8 @@
                 </table>
                 <hr>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
 </div>
 

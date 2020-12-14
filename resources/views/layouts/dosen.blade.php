@@ -1,4 +1,23 @@
+<?php
 
+use App\Bimbingan;
+use App\Mahasiswa;
+use App\Pengajuan;
+use Illuminate\Support\Facades\Auth;
+
+$mhs = Mahasiswa::all()->count();
+$pengajuan = Pengajuan::where([
+    'dosen_id' => Auth::user()->id,
+    'status' => 'Pengajuan'
+])->count();
+
+$bimbingan = Bimbingan::where([
+    'dosen_id' => Auth::user()->id,
+    'status' => 'Bimbingan'
+])->count();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +47,8 @@
 
 <body id="page-top">
 
+    
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -52,46 +73,45 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Menu
             </div>
 
 
             <!-- Nav Item - Charts -->
+            @if(Auth::user()->jabatan == 'kaprodi')
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                <a class="nav-link" href="{{ route('pengajuan') }}">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Pengajuan Kerja Praktek</span>
+                    @if($pengajuan >= 1)
+                    <span class="badge badge-danger badge-counter">{{ $pengajuan }}</span>
+                    @endif
+                </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('pengajuan') }}">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Pengajuan Tugas Akhir</span>
+                    <span class="badge badge-danger badge-counter">3+</span>
+                </a>
+            </li>
+            @endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('bimbingan.dosen') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Bimbingan Mahasiswa</span>
+                    @if($bimbingan >= 1)
+                    <span class="badge badge-danger badge-counter">{{ $bimbingan }}</span>
+                    @endif
+                </a>
+            </li>
+
 
 
             <!-- Divider -->

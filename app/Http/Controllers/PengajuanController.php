@@ -32,7 +32,11 @@ class PengajuanController extends Controller
         $data['ditolak'] = Pengajuan::where([
             'mahasiswa_id'=> $id,
             'status' => 'Ditolak'
-        ])->count();
+        ])->get();
+        $data['terima'] = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'status' => 'Diterima'
+        ])->get();
         
         $id = Auth::user()->mahasiswa_id;
         $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
@@ -72,7 +76,12 @@ class PengajuanController extends Controller
         $data['ditolak'] = Pengajuan::where([
             'mahasiswa_id'=> $id,
             'status' => 'Ditolak'
-        ])->count();
+        ])->get();
+        $data['terima'] = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'status' => 'Diterima'
+        ])->get();
+
 
         if ($pengajuan == null) {
             return view('pengajuan.kerjaPraktek');
