@@ -10,6 +10,12 @@
                     <strong>{{ $msg }}</strong>
                 </div>
                 @endif
+                @if ($errors->has('file_upload'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <strong>{{ $errors->first('file_upload') }}</strong>
+                    </div>
+                @endif
 
                 @foreach($bimbingans as $bimbingan)
                     <div class="card shadow mb-4">
@@ -39,17 +45,55 @@
                                 {{ $revisi->catatan }}
                             @endforeach
 
+                            
+                            @if($bimbingan->status == 'Bimbingan')
                             <p>
                                 Note: Pilih Upload jika akan melakukan bimbingan secara online atau pilih buat janji untuk bimbingan secara tatap muka
                             </p>
-                            <a href="" class="btn btn-success">Upload</a>
-                            <a href="" class="btn btn-primary">Buat Jadwal</a>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $bimbingan->bab }}">
+                                    Upload File
+                                </button></a>
+                                <a href="" class="btn btn-primary">Buat Jadwal</a>
+                            @endif
+                            
 
                         </div>
                     </div>
-                    
+
+                    {{-- modal --}}
+                    <div class="modal fade" id="exampleModal{{ $bimbingan->bab }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Upload Bab {{ $bimbingan->bab }}</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form action="{{ route('bimbingan.uploadBab', ['id' => $bimbingan->id]) }}" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <div class="custom-file">
+                                    <input type="file" name="file_upload" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                        
+                                
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 @endforeach
             </div>
         </div>
     </div>
 @endsection
+
+{{-- modal --}}

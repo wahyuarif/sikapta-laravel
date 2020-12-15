@@ -48,29 +48,7 @@
                     </li>
                 </ul>
               @else
-                @if(Auth::guard('admin')->check())
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                        </li>
-                    </ul>
-                @elseif(Auth::guard('dosen')->check())
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->nm_dosen }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                        </li>
-                    </ul>
-                @else
+           
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,7 +68,7 @@
                         </div>
                         </li>
                     </ul>
-                @endif
+        
             @endguest
             </div>
         </div>
@@ -107,5 +85,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script> --}}
 </body>
 </html>

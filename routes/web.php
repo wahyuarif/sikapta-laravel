@@ -93,7 +93,10 @@ Route::prefix('pengajuan')->group(function(){
 
 Route::prefix('bimbingan')->group(function(){
     Route::get('/mahasiswa', 'BimbinganController@indexMahasiswa')->name('bimbingan.mahasiswa');
+    Route::put('/uploadBab/{id}','BimbinganController@uploadBab')->name('bimbingan.uploadBab');
     Route::get('/dosen', 'BimbinganController@indexDosen')->name('bimbingan.dosen');
+    Route::get('/mahasiswa/{mahasiswa_id}', 'BimbinganController@bimbinganMahasiswa')->name('bimbingan.mahasiswa.show');
+    Route::get('/terima/{id}', 'BimbinganController@terima')->name('bimbingan.terima');
 });
 
 

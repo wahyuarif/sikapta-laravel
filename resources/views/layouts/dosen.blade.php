@@ -14,8 +14,9 @@ $pengajuan = Pengajuan::where([
 $bimbingan = Bimbingan::where([
     'dosen_id' => Auth::user()->id,
     'status' => 'Bimbingan'
-])->count();
-
+])
+->whereNotNull('file_bimbingan')
+->count();
 
 ?>
 <!DOCTYPE html>

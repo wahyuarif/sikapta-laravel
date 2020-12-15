@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         Eloquent::unguard();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+         $this->call(PengajuanTableSeeder::class);
+         $this->call(BimbinganTableSeeder::class);
          $this->call(ProdiTableSeeder::class);
          $this->call(MahasiswaTableSeeder::class);
          $this->call(UsersTableSeeder::class);

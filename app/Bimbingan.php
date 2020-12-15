@@ -27,6 +27,11 @@ class Bimbingan extends Model
         return $this->belongsTo(Dosen::class);
     }
 
+    public function pengajuan()
+    {
+        return $this->belongsTo(Pengajuan::class);
+    }
+
     public function revisi()
     {
         return $this->belongsToMany(Revisi::class);
