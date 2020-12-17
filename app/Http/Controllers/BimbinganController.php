@@ -108,8 +108,38 @@ class BimbinganController extends Controller
     
             Session::flash('msg', 'Pengajuan Berhasil Diterima');
     
-            return redirect(route('bimbingan.mahasiswa.show', $bimbingan0->mahasiswa_id));
+            return redirect()->back();
         }
+        
 
+    }
+
+    public function revisi(Request $request)
+    {
+            
+        $this->validate($request, [
+            'catatan' => 'required',
+            'file_revisi' => 'required|mimes:pdf,docs'
+        ]);
+
+        $file = $request->file('file_revisi');
+
+       
+        $file_name = $file->getClientOriginalName();
+
+        $tujuan_upload = 'file/file_revisi';
+
+	    $file->move($tujuan_upload,$file->getClientOriginalName());
+
+        $bimbingan = Bimbingan::findOrFail($request->id_bimbingan);
+
+        $bimbingan->revisi()->create([
+            'file_revisi' => $file_name,
+            'catatan' => $request->catatan
+        ]);
+        
+        Session::flash('msg', 'Berhasil Membuat Revisi');
+
+        return redirect()->back();
     }
 }

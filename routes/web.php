@@ -97,16 +97,22 @@ Route::prefix('bimbingan')->group(function(){
     Route::get('/dosen', 'BimbinganController@indexDosen')->name('bimbingan.dosen');
     Route::get('/mahasiswa/{mahasiswa_id}', 'BimbinganController@bimbinganMahasiswa')->name('bimbingan.mahasiswa.show');
     Route::get('/terima/{id}', 'BimbinganController@terima')->name('bimbingan.terima');
+    Route::post('/revisi', 'BimbinganController@revisi')->name('bimbingan.revisi');
 });
 
 
-Route::get('/revisi', function(){
-   $bimbingan = Bimbingan::findOrFail(1);
-   
-   $bimbingan->revisi()->create([
-        'file_revisi' => 'blabla.pdf',
-        'catatan' => 'lorem ipsum'
-   ]);
-
-   return "success";
+Route::prefix('pengajuanTA')->group(function(){
+    // Dosen Page
+    Route::get('/', 'PengajuanTAController@index')->name('pengajuan');
+    Route::get('/status', 'PengajuanTAController@status')->name('pengajuan.status');
+    Route::get('/show/{id}' , 'PengajuanTAController@show')->name('pengajuan.show');
+    Route::put('/terima/{id}', 'PengajuanTAController@terima')->name('pengajuan.terima');
+    Route::put('/terimaSyarat/{id}', 'PengajuanTAController@terimaSyarat')->name('pengajuan.terimaSyarat');
+    Route::get('/tolak/{id}', 'PengajuanTAController@tolak')->name('pengajuan.tolak');
+    // Pengajuan Mahasiswa
+    Route::get('/kerjaPraktek', 'PengajuanTAController@kerjaPraktek')->name('pengajuan.kerjaPraktek');
+    Route::get('/kerjaPraktekSecond', function(){
+        return view('pengajuan.kerjaPraktekSecond');
+    })->name('pengajuan.kerjaPraktekSecond');
+    Route::post('/kerjaPraktek', 'PengajuanTAController@kpSubmit')->name('pengajuan.kpSubmit');
 });

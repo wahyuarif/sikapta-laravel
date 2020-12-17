@@ -41,9 +41,26 @@
                                 </tr>
                             </table>
 
-                            @foreach($bimbingan->revisi as $revisi)
-                                {{ $revisi->catatan }}
-                            @endforeach
+                            <h4 class="bold">Revisi</h4>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Catatan</th>
+                                        <th scope="col">Document Revisi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($bimbingan->revisi as $revisi)
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{$revisi->catatan}}</td>
+                                    <td>{{$revisi->file_revisi}}</td>
+                                  </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
 
                             
                             @if($bimbingan->status == 'Bimbingan')
