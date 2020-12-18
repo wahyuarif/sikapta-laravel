@@ -22,10 +22,28 @@ class BimbinganController extends Controller
     {
         $id = Auth::user()->mahasiswa_id;
 
-        $data['bimbingans'] =  Bimbingan::where([
+        $bimbinganKP =  Bimbingan::whereHas('pengajuan', function($query){
+            return $query->where('jns_pengajuan','=','KP');
+        })->where('mahasiswa_id' , $id)->get();
+
+        $bimbinganTA =  Bimbingan::whereHas('pengajuan', function($query){
+            return $query->where('jns_pengajuan','=','TA');
+        })->where('mahasiswa_id' , $id)->get();
+
+      
+        $selesai =  Bimbingan::where([
             'mahasiswa_id'=> $id,
-            ])->get();
-        return view('bimbingan.index', $data);
+            'status' => 'Selesai'
+            ])->count();
+
+
+
+        if ($selesai > 0) {
+            return view('bimbingan.index', ['bimbingans' => $bimbinganTA, 'selesai' => $selesai]);
+        }else{
+            return view('bimbingan.index', ['bimbingans' => $bimbinganKP , 'selesai' => $selesai]);
+        }
+
     }
 
     public function indexDosen()
@@ -63,7 +81,7 @@ class BimbinganController extends Controller
         $file = $request->file('file_upload');
 
        
-        $file_name = $file->getClientOriginalName();
+        $file_name = time();
 
         $tujuan_upload = 'file/file_bimbingan';
 	    $file->move($tujuan_upload,$file->getClientOriginalName());
@@ -76,6 +94,30 @@ class BimbinganController extends Controller
 
         return redirect(route('bimbingan.mahasiswa'));       
     }
+
+    public function uploadRevisi(Request $request, $id)
+    {
+        $this->validate($request, [
+            'file_upload' => 'required|mimes:pdf,docs'
+        ]);
+
+        $file = $request->file('file_upload');
+
+       
+        $file_name = 'revisi-'.time();
+
+        $tujuan_upload = 'file/file_bimbingan';
+	    $file->move($tujuan_upload,$file->getClientOriginalName());
+
+        $bimbingan = Bimbingan::find($id);
+        $bimbingan->file_bimbingan = $file_name;
+        $bimbingan->save();
+
+        Session::flash('msg', 'Berhasil Upload File');
+
+        return redirect(route('bimbingan.mahasiswa'));       
+    }
+    
 
     public function terima($id)
     {
@@ -125,7 +167,7 @@ class BimbinganController extends Controller
         $file = $request->file('file_revisi');
 
        
-        $file_name = $file->getClientOriginalName();
+        $file_name = time();
 
         $tujuan_upload = 'file/file_revisi';
 
@@ -137,6 +179,9 @@ class BimbinganController extends Controller
             'file_revisi' => $file_name,
             'catatan' => $request->catatan
         ]);
+
+        $bimbingan->status = 'Revisi';
+        $bimbingan->save();
         
         Session::flash('msg', 'Berhasil Membuat Revisi');
 

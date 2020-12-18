@@ -30,7 +30,7 @@
     Pengajuan dengan judul <b>{{ $ditolak[0]->judul }}</b> telah ditolak oleh kaprodi silahkan mengajukan bimbingan kembali
   </p>                 
   <hr>
-    <a href="{{ route('pengajuan.kerjaPraktekSecond') }}" class="btn btn-primary btn-sm">Pengajuan Kembali</a>
+    <a href="{{ route('pengajuanKP.kerjaPraktekSecond') }}" class="btn btn-primary btn-sm">Pengajuan Kembali</a>
     </a>
   
 </div>
@@ -39,7 +39,7 @@
 <div class="row mt-3">
     <div class="col-12">
         @foreach($pengajuans as $pengajuan)
-        <div class="card alert-{{ ($pengajuan->status == 'Ditolak') ? 'danger' : 'success' }}">
+        <div class="mt-3 card alert-{{ ($pengajuan->status == 'Ditolak') ? 'danger' : 'success' }}">
             <div class="card-body">
                 <h5> {{$pengajuan->judul}} </h5>
                 <hr>

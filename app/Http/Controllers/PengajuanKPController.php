@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 // use Symfony\Component\HttpFoundation\Session\Session;
 
-class PengajuanController extends Controller
+class PengajuanKPController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,7 +41,7 @@ class PengajuanController extends Controller
         $id = Auth::user()->mahasiswa_id;
         $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
 
-        return view('pengajuan.status', $data);
+        return view('pengajuanKP.status', $data);
     }
 
     public function index()
@@ -57,7 +57,7 @@ class PengajuanController extends Controller
             ])->get();
     
             // dd($pengajuan);
-            return view('pengajuan.index', $data);
+            return view('pengajuanKP.index', $data);
         }else{
             return "Page not found";
         }
@@ -84,9 +84,9 @@ class PengajuanController extends Controller
 
 
         if ($pengajuan == null) {
-            return view('pengajuan.kerjaPraktek');
+            return view('pengajuanKP.formPengajuan');
         }else{
-            return view('pengajuan.status' , $data);
+            return view('pengajuanKP.status' , $data);
         }
     }
 
@@ -164,7 +164,7 @@ class PengajuanController extends Controller
 
         Session::flash('msg', 'Berhasil Ditambah');
 
-        return redirect(route('pengajuan.status'));
+        return redirect(route('pengajuanKP.status'));
     }
 
     private function _uploadFile($nim, $kerangkaPikir)
@@ -186,7 +186,7 @@ class PengajuanController extends Controller
         $data['dosens'] = Dosen::all();
         $data['pengajuan'] = Pengajuan::where('id', $id)->first();
         
-        return view('pengajuan.show', $data);
+        return view('pengajuanKP.show', $data);
     }
 
     public function terima(Request $request, $id)
@@ -213,7 +213,7 @@ class PengajuanController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Diterima');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanKP'));
 
     }
     public function tolak($id)
@@ -224,7 +224,7 @@ class PengajuanController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Ditolak');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanKP'));
 
     }
     public function terimaSyarat(Request $request, $id)
@@ -258,7 +258,7 @@ class PengajuanController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Diterima');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanKP'));
     }
 
 }

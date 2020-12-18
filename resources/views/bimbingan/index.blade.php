@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if($selesai >= 1 AND count($bimbingans) == 0)
+
+<div class="alert alert-primary mt-3" role="alert">
+  <h4 class="alert-heading">Bimbingan Tugas Akhir</h4>
+  <p>
+    Bimbingan Kerja Praktek Anda Sudah Selesai, selahkan lanjut ke Tugas 
+    Akhir
+  </p>                 
+  <hr>
+    <a href="{{ route('pengajuanTA.formPengajuan') }}" class="btn btn-primary btn-sm">Pengajuan TA</a>
+    </a>
+  
+</div>
+
+@endif
+
+
+
     <div class="container">
         <div class="row mt-3">
             <div class="col-md-8 col-md-offset-2">
@@ -43,6 +62,7 @@
 
                             <h4 class="bold">Revisi</h4>
 
+
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -52,33 +72,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($bimbingan->revisi as $revisi)
+                                @foreach($bimbingan->revisi as $revisi)
                                   <tr>
                                     <th scope="row">1</th>
-                                    <td>{{$revisi->catatan}}</td>
+                                    <td>{{($revisi->catatan)}}</td>
                                     <td>{{$revisi->file_revisi}}</td>
                                   </tr>
-                                  @endforeach
+                                  
+                                @endforeach
                                 </tbody>
                               </table>
 
                             
-                            @if($bimbingan->status == 'Bimbingan')
+                            @if($bimbingan->status == 'Bimbingan' AND $bimbingan->file_bimbingan == null)
                             <p>
                                 Note: Pilih Upload jika akan melakukan bimbingan secara online atau pilih buat janji untuk bimbingan secara tatap muka
                             </p>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $bimbingan->bab }}">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#upload{{ $bimbingan->bab }}">
                                     Upload File
                                 </button></a>
-                                <a href="" class="btn btn-primary">Buat Jadwal</a>
+                               
+                            @endif
+
+                            @if (count($bimbingan->revisi) > 0 AND $bimbingan->status == 'Revisi')
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadRevisi{{ $bimbingan->bab }}">
+                                Upload Revisi
+                            </button></a>
                             @endif
                             
 
                         </div>
                     </div>
-
-                    {{-- modal --}}
-                    <div class="modal fade" id="exampleModal{{ $bimbingan->bab }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {{-- Modal Upload --}}
+                    <div class="modal fade" id="upload{{ $bimbingan->bab }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -88,6 +114,36 @@
                               </button>
                             </div>
                             <form action="{{ route('bimbingan.uploadBab', ['id' => $bimbingan->id]) }}" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <div class="custom-file">
+                                    <input type="file" name="file_upload" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                        
+                                
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{-- modal revisi --}}
+                    <div class="modal fade" id="uploadRevisi{{ $bimbingan->bab }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Upload Revisi</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form action="{{ route('bimbingan.uploadRevisi', ['id' => $bimbingan->id]) }}" method="POST" enctype="multipart/form-data">
                             <div class="modal-body">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}

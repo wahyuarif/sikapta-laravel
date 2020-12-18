@@ -46,7 +46,7 @@
                                 </span>
                             </td>
                             <td> 
-                                <a href="{{ route('pengajuan.show', ['id' => $pengajuan->id]) }}" class="btn btn-primary btn-sm">Lihat Pengajuan</a> 
+                                <a href="{{ route('pengajuanKP.show', ['id' => $pengajuan->id]) }}" class="btn btn-primary btn-sm">Lihat Pengajuan</a> 
                             </td>
                         </tr>
                     @endforeach

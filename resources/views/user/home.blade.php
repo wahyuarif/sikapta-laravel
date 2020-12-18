@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="col-sm-3 col-sm-6 mt-3">
-        <a href="{{ route('pengajuan.kerjaPraktek') }}" class="btn">
+        <a href="{{ route('pengajuanKP.kerjaPraktek') }}" class="btn">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -62,7 +62,7 @@
         </a>
     </div>
     <div class="col-sm-3 col-sm-6 mt-3">
-        <a href="www.google.com" class="btn">
+        <a href="{{route('pengajuanTA.tugasAkhir')}}" class="btn">
             <div class="card">
                 <div class="card-body">
                     <div class="row">

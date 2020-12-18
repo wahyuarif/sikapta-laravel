@@ -47,7 +47,7 @@
                                 </tr>
                             </table>
                             
-                            @if($bimbingan->status == 'Bimbingan')
+                            @if($bimbingan->status == 'Bimbingan' OR $bimbingan->status == 'Revisi')
                                 <a 
                                 href="{{ route('bimbingan.terima', ['id' => $bimbingan->id ]) }}" 
                                 class="btn btn-success"
@@ -58,6 +58,7 @@
                                 Revisi
                             </button>
                             @endif
+                            
                             <!-- Modal Revsi-->
                             <div class="modal fade" id="revisi{{$bimbingan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">

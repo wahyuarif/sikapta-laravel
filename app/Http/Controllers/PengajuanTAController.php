@@ -22,26 +22,31 @@ class PengajuanTAController extends Controller
 
      public function __construct()
      {
-         $this->middleware('auth:dosen')->except(['kerjaPraktek', 'kpSubmit', 'status']);
-         $this->middleware('auth:web')->only(['kerjaPraktek', 'kpSubmit', 'status']);
+         $this->middleware('auth:dosen')->except(['formPengajuan', 'taSubmit', 'status']);
+         $this->middleware('auth:web')->only(['formPengajuan', 'taSubmit', 'status']);
      }
 
     public function status()
     {
         $id = Auth::user()->mahasiswa_id;
         $data['ditolak'] = Pengajuan::where([
+            'jns_pengajuan' => 'TA',
             'mahasiswa_id'=> $id,
             'status' => 'Ditolak'
         ])->get();
         $data['terima'] = Pengajuan::where([
+            'jns_pengajuan' => 'TA',
             'mahasiswa_id'=> $id,
             'status' => 'Diterima'
         ])->get();
         
         $id = Auth::user()->mahasiswa_id;
-        $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
+        $data['pengajuans'] = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'jns_pengajuan' => 'TA'
+        ])->get();
 
-        return view('pengajuan.status', $data);
+        return view('pengajuanTA.status', $data);
     }
 
     public function index()
@@ -66,10 +71,13 @@ class PengajuanTAController extends Controller
     }
     
 
-    public function kerjaPraktek()
+    public function formPengajuan()
     {
         $id = Auth::user()->mahasiswa_id;
-        $pengajuan = Pengajuan::where('mahasiswa_id', $id)->count();
+        $pengajuan = Pengajuan::where([
+            'mahasiswa_id'=> $id,
+            'jns_pengajuan' => 'TA'
+        ])->count();
 
         $data['pengajuans'] = Pengajuan::where('mahasiswa_id', $id)->get();
  
@@ -84,13 +92,13 @@ class PengajuanTAController extends Controller
 
 
         if ($pengajuan == null) {
-            return view('pengajuan.kerjaPraktek');
+            return view('pengajuanTA.formPengajuan');
         }else{
-            return view('pengajuan.status' , $data);
+            return view('pengajuanTA.status' , $data);
         }
     }
 
-    public function kpSubmit(Request $request)
+    public function taSubmit(Request $request)
     {
         $this->validate($request, [
             'judul' => 'required',
@@ -137,7 +145,7 @@ class PengajuanTAController extends Controller
 
 
 
-        $noPengajuan = $kdProdi.'KP'.$mon.$year.'00'.$back;
+        $noPengajuan = $kdProdi.'TA'.$mon.$year.'00'.$back;
 
                 
 
@@ -149,7 +157,7 @@ class PengajuanTAController extends Controller
             'bidang_pekerjaan' => $request->bidang_pekerjaan,
             'deskripsi' => $request->deskripsi,
             'jml_pegawai' => $request->jml_pegawai,
-            'jns_pengajuan' => 'KP',
+            'jns_pengajuan' => 'TA',
             'kompleksitas_pekerjaan' => $request->kompleksitas_pekerjaan,
             'lokasi' => $request->lokasi,
             'nm_instansi' => $request->nm_instansi,
@@ -164,7 +172,7 @@ class PengajuanTAController extends Controller
 
         Session::flash('msg', 'Berhasil Ditambah');
 
-        return redirect(route('pengajuan.status'));
+        return redirect(route('pengajuanTA.status'));
     }
 
     private function _uploadFile($nim, $kerangkaPikir)

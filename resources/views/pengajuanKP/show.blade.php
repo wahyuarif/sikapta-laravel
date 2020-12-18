@@ -77,11 +77,11 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#terimaModal">
                         Terima
                     </button>
-                    <!-- <a href="{{ route('pengajuan.terimaSyarat', ['id' => $pengajuan->id]) }}" class="btn btn-warning">Terima Dengan Syarat</a> -->
+                    
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#syaratModal">
                         Terima Syarat
                     </button>
-                    <a href="{{ route('pengajuan.tolak', ['id' => $pengajuan->id]) }}" class="btn btn-danger">Tolak</a>
+                    <a href="{{ route('pengajuanKP.tolak', ['id' => $pengajuan->id]) }}" class="btn btn-danger">Tolak</a>
                 </div>
 
 
@@ -96,7 +96,7 @@
 <!-- Modal Terima Syaray-->
 <div class="modal fade" id="syaratModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-    <form action="{{ route('pengajuan.terimaSyarat', ['id' => $pengajuan->id]) }}" method="post">
+    <form action="{{ route('pengajuanKP.terimaSyarat', ['id' => $pengajuan->id]) }}" method="post">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Syarat Diterima</h5>
@@ -138,7 +138,7 @@
 <!-- Modal Terima-->
 <div class="modal fade" id="terimaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-    <form action="{{ route('pengajuan.terima', ['id' => $pengajuan->id]) }}" method="post">
+    <form action="{{ route('pengajuanKP.terima', ['id' => $pengajuan->id]) }}" method="post">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Diterima</h5>

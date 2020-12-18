@@ -87,7 +87,7 @@ $bimbingan = Bimbingan::where([
             <!-- Nav Item - Charts -->
             @if(Auth::user()->jabatan == 'kaprodi')
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('pengajuan') }}">
+                <a class="nav-link" href="{{ route('pengajuanKP') }}">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Pengajuan Kerja Praktek</span>
                     @if($pengajuan >= 1)
@@ -96,7 +96,7 @@ $bimbingan = Bimbingan::where([
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('pengajuan') }}">
+                <a class="nav-link" href="{{ route('pengajuanTA') }}">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Pengajuan Tugas Akhir</span>
                     <span class="badge badge-danger badge-counter">3+</span>

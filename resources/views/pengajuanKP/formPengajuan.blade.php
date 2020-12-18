@@ -36,7 +36,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Pengajuan Kerja Praktek</h6>
             </div>
             <div class="card-body">
-            <form class="form-horizontal" method="POST" action="{{ route('pengajuan.kpSubmit') }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{ route('pengajuanKP.kpSubmit') }}" enctype="multipart/form-data">
                         {{ csrf_field() }} {{ method_field('POST') }}
 
                         <div class="form-group row">

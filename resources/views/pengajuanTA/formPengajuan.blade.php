@@ -3,13 +3,13 @@
 @section('content')
 <div class="row mt-2">
     <div class="col-12">
-        <h4>Pengajuan Kerja Praktek</h4>
+        <h4>Pengajuan Tugas Akhir</h4>
         <hr>
     </div>
 </div>
 
 <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Anda Sudah Memenuhi Syarat Untuk Pengajuan Kerja Praktek</h4>
+  <h4 class="alert-heading">Anda Sudah Memenuhi Syarat Untuk Pengajuan Tugas Akhir</h4>
   <p>
       Jika membutuhkan Surat ijin survey silahkan download
   </p>                 
@@ -33,10 +33,10 @@
         <div class="col-md-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Pengajuan Kerja Praktek</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Pengajuan Tugas Akhir</h6>
             </div>
             <div class="card-body">
-            <form class="form-horizontal" method="POST" action="{{ route('pengajuan.kpSubmit') }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{ route('pengajuanTA.taSubmit') }}" enctype="multipart/form-data">
                         {{ csrf_field() }} {{ method_field('POST') }}
 
                         <div class="form-group row">
