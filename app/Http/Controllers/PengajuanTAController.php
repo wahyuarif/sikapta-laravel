@@ -62,7 +62,7 @@ class PengajuanTAController extends Controller
             ])->get();
     
             // dd($pengajuan);
-            return view('pengajuan.index', $data);
+            return view('pengajuanTA.index', $data);
         }else{
             return "Page not found";
         }
@@ -194,7 +194,7 @@ class PengajuanTAController extends Controller
         $data['dosens'] = Dosen::all();
         $data['pengajuan'] = Pengajuan::where('id', $id)->first();
         
-        return view('pengajuan.show', $data);
+        return view('pengajuanTA.show', $data);
     }
 
     public function terima(Request $request, $id)
@@ -221,7 +221,7 @@ class PengajuanTAController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Diterima');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanTA'));
 
     }
     public function tolak($id)
@@ -232,7 +232,7 @@ class PengajuanTAController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Ditolak');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanTA'));
 
     }
     public function terimaSyarat(Request $request, $id)
@@ -266,7 +266,7 @@ class PengajuanTAController extends Controller
 
         Session::flash('msg', 'Pengajuan Berhasil Diterima');
 
-        return redirect(route('pengajuan'));
+        return redirect(route('pengajuanTA'));
     }
 
 }

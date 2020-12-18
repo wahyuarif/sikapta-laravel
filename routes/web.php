@@ -84,8 +84,8 @@ Route::prefix('pengajuanKP')->group(function(){
     Route::put('/terimaSyarat/{id}', 'PengajuanKPController@terimaSyarat')->name('pengajuanKP.terimaSyarat');
     Route::get('/tolak/{id}', 'PengajuanKPController@tolak')->name('pengajuanKP.tolak');
     // Pengajuan Mahasiswa
-    Route::get('/kerjaPraktek', 'PengajuanKPController@kerjaPraktek')->name('pengajuanKP.kerjaPraktek');
-    Route::get('/kerjaPraktekSecond', function(){
+    Route::get('/formPengajuan', 'PengajuanKPController@formPengajuan')->name('pengajuanKP.formPengajuan');
+    Route::get('/formPengajuanSecond', function(){
         return view('pengajuanKP.formPengajuan');
     })->name('pengajuanKP.kerjaPraktekSecond');
     Route::post('/kerjaPraktek', 'PengajuanKPController@kpSubmit')->name('pengajuanKP.kpSubmit');
@@ -115,5 +115,5 @@ Route::prefix('pengajuanTA')->group(function(){
     Route::get('/tugasAkhirSecond', function(){
         return view('pengajuan.formPengajuan');
     })->name('pengajuan.tugasAkhirSecondSecond');
-    Route::post('/kerjaPraktek', 'PengajuanTAController@taSubmit')->name('pengajuanTA.taSubmit');
+    Route::post('/tugasAkhir', 'PengajuanTAController@taSubmit')->name('pengajuanTA.taSubmit');
 });

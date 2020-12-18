@@ -52,6 +52,7 @@ class BimbinganController extends Controller
 
         $data['bimbingans'] = Bimbingan::where([
             'dosen_id' => $dosen_id,
+            'status' => 'Bimbingan'
             ])
             ->whereNotNull('file_bimbingan')
             ->groupBy('pengajuan_id')

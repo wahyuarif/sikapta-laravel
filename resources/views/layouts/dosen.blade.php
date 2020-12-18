@@ -6,17 +6,36 @@ use App\Pengajuan;
 use Illuminate\Support\Facades\Auth;
 
 $mhs = Mahasiswa::all()->count();
-$pengajuan = Pengajuan::where([
+$pengajuanKP = Pengajuan::where([
     'dosen_id' => Auth::user()->id,
-    'status' => 'Pengajuan'
+    'status' => 'Pengajuan',
+    'jns_pengajuan' => 'KP'
+])->count();
+$pengajuanTA = Pengajuan::where([
+    'dosen_id' => Auth::user()->id,
+    'status' => 'Pengajuan',
+    'jns_pengajuan' => 'TA'
 ])->count();
 
-$bimbingan = Bimbingan::where([
+$bimbinganKP =  Bimbingan::where([
     'dosen_id' => Auth::user()->id,
     'status' => 'Bimbingan'
-])
+])->whereHas('pengajuan', function($query){
+    return $query->where('jns_pengajuan','=','KP');
+})
 ->whereNotNull('file_bimbingan')
 ->count();
+
+$bimbinganTA =  Bimbingan::where([
+    'dosen_id' => Auth::user()->id,
+    'status' => 'Bimbingan'
+])->whereHas('pengajuan', function($query){
+    return $query->where('jns_pengajuan','=','TA');
+})
+->whereNotNull('file_bimbingan')
+->count();
+
+
 
 ?>
 <!DOCTYPE html>
@@ -90,8 +109,8 @@ $bimbingan = Bimbingan::where([
                 <a class="nav-link" href="{{ route('pengajuanKP') }}">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Pengajuan Kerja Praktek</span>
-                    @if($pengajuan >= 1)
-                    <span class="badge badge-danger badge-counter">{{ $pengajuan }}</span>
+                    @if($pengajuanKP >= 1)
+                    <span class="badge badge-danger badge-counter">{{ $pengajuanKP }}</span>
                     @endif
                 </a>
             </li>
@@ -99,16 +118,18 @@ $bimbingan = Bimbingan::where([
                 <a class="nav-link" href="{{ route('pengajuanTA') }}">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Pengajuan Tugas Akhir</span>
-                    <span class="badge badge-danger badge-counter">3+</span>
+                    @if($pengajuanTA >= 1)
+                    <span class="badge badge-danger badge-counter">{{ $pengajuanTA }}</span>
+                    @endif
                 </a>
             </li>
             @endif
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('bimbingan.dosen') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Bimbingan Mahasiswa</span>
-                    @if($bimbingan >= 1)
-                    <span class="badge badge-danger badge-counter">{{ $bimbingan }}</span>
+                    <span>Bimbingan Kerja Praktek</span>
+                    @if($bimbinganKP >= 1)
+                    <span class="badge badge-danger badge-counter">{{ $bimbinganKP }}</span>
                     @endif
                 </a>
             </li>

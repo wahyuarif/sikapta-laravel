@@ -45,6 +45,13 @@
                                     <td>:</td>
                                     <td>{{ $bimbingan->status }}</td>
                                 </tr>
+                                <tr>
+                                    <td>File Bimbingan</td>
+                                    <td>:</td>
+                                    <td>
+                                        <a href="{{ asset('file/file_revisi') }}/{{ $bimbingan->file_bimbingan }}">File Bimbingan</a>
+                                    </td>
+                                </tr>
                             </table>
                             
                             @if($bimbingan->status == 'Bimbingan' OR $bimbingan->status == 'Revisi')

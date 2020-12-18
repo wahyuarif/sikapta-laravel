@@ -22,8 +22,8 @@ class PengajuanKPController extends Controller
 
      public function __construct()
      {
-         $this->middleware('auth:dosen')->except(['kerjaPraktek', 'kpSubmit', 'status']);
-         $this->middleware('auth:web')->only(['kerjaPraktek', 'kpSubmit', 'status']);
+         $this->middleware('auth:dosen')->except(['formPengajuan', 'kpSubmit', 'status']);
+         $this->middleware('auth:web')->only(['formPengajuan', 'kpSubmit', 'status']);
      }
 
     public function status()
@@ -66,7 +66,7 @@ class PengajuanKPController extends Controller
     }
     
 
-    public function kerjaPraktek()
+    public function formPengajuan()
     {
         $id = Auth::user()->mahasiswa_id;
         $pengajuan = Pengajuan::where('mahasiswa_id', $id)->count();
