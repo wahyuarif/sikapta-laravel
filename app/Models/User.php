@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Mahasiswa;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -18,6 +19,13 @@ class User extends Authenticatable
     protected $fillable = [
         'mahasiswa_id', 'email', 'password',
     ];
+    
+    public function getCreatedAttribute() 
+    {
+        return Carbon::parse($this->attribute['created_at'])
+                        ->translatedFormat('l, d F Y');
+    }
+    
 
     /**
      * The attributes that should be hidden for arrays.

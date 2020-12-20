@@ -30,6 +30,11 @@
                             <td>{{ $pengajuan->no_pengajuan }}</td>
                         </tr>
                         <tr>
+                          <td>Tanggal Pengajuan</td>
+                          <td>:</td>
+                          <td>{{ $pengajuan->mahasiswa->created_at }}</td>
+                        </tr>
+                        <tr>
                             <td>Nama</td>
                             <td>:</td>
                             <td>{{ $pengajuan->mahasiswa->nama }}</td>

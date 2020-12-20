@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+
 
 class Bimbingan extends Model
 {
@@ -16,6 +18,12 @@ class Bimbingan extends Model
         'revisi_id',
         'status'
     ];
+
+    public function getCreatedAttribute() 
+    {
+        return Carbon::parse($this->attribute['created_at'])
+                        ->translatedFormat('l, d F Y');
+    }
 
     public function mahasiswa()
     {

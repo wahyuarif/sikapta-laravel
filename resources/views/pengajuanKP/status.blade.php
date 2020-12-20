@@ -18,7 +18,7 @@
   </p>                 
   <hr>
     <a href="{{ route('bimbingan.mahasiswa') }}" class="btn btn-primary btn-sm">Bimbingan</a>
-    </a>
+    {{-- <a href="{{ route('bimbinganfile') }}" class="btn btn-primary btn-sm">Lembar Bimbingan Offline</a> --}}
   
 </div>
 

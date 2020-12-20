@@ -72,6 +72,12 @@
                     <span>Charts</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Konfirmasi Pembayaran</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>Status</td>
                                     <td>:</td>
-                                    <td>{{ $bimbingan->status }}</td>
+                                    <td>{{ $bimbingan->status }} pada {{$bimbingan->updated_at}}</td>
                                 </tr>
                                 <tr>
                                     <td>File Bimbingan</td>
@@ -59,7 +59,7 @@
                                 href="{{ route('bimbingan.terima', ['id' => $bimbingan->id ]) }}" 
                                 class="btn btn-success"
                                 >
-                                Terima
+                                Terima 
                             </a>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#revisi{{$bimbingan->id}}">
                                 Revisi

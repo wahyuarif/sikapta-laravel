@@ -21,6 +21,12 @@ class Kaprodi extends Authenticatable
     protected $fillable = [
         'dosen_id','prodi_id', 'email', 'password',
     ];
+    
+    public function getCreatedAttribute() 
+    {
+        return Carbon::parse($this->attribute['created_at'])
+                        ->translatedFormat('l, d F Y');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

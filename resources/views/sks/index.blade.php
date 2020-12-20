@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -68,9 +68,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <a href="{{ asset('file_format_sks/format_excel_sks.xlsx') }}" class="btn btn-success">
+        <i class="fas fa-download"></i>
+        Download Template File
+      </a>
       <div class="modal-body">
       {{ csrf_field() }}
 
+        
         <label> Pilih File Excel </label>
         <div class="form-group">
             <input type="file" name="file" required="required">

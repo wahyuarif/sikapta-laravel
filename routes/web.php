@@ -75,6 +75,10 @@ Route::prefix('sks')->group(function(){
     Route::post('/importExcel', 'SksController@importExcel')->name('sks.importExcel');
 });
 
+//syaratPengajuanblade
+
+
+
 Route::prefix('pengajuanKP')->group(function(){
     // Dosen Page
     Route::get('/', 'PengajuanKPController@index')->name('pengajuanKP');
@@ -99,6 +103,8 @@ Route::prefix('bimbingan')->group(function(){
     Route::get('/terima/{id}', 'BimbinganController@terima')->name('bimbingan.terima');
     Route::post('/revisi', 'BimbinganController@revisi')->name('bimbingan.revisi');
     Route::put('/uploadRevisi/{id}','BimbinganController@uploadRevisi')->name('bimbingan.uploadRevisi');
+
+
 });
 
 

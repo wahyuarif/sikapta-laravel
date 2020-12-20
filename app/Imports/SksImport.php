@@ -4,8 +4,11 @@ namespace App\Imports;
 
 use App\Sks;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class SksImport implements ToModel
+
+class SksImport implements ToModel , WithStartRow
 {
     /**
     * @param array $row
@@ -14,18 +17,28 @@ class SksImport implements ToModel
     */
     public function model(array $row)
     {
+     
         // dd($row);
+        // Sks::truncate();
+
 
         $jml_sks = 0;
 
-        for ($i=3; $i < 11 ; $i++) { 
+        for ($i=3; $i < 46 ; $i++) { 
             $jml_sks += (int)$row[$i];
         }
+
+        // dd($jml_sks);
 
         return new Sks([
             'nim' => $row[1],
             'nama' => $row[2],
             'jml_sks' => $jml_sks
         ]);
+
+    }
+    
+    public function startRow():int {
+        return 7;
     }
 }

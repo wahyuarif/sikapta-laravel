@@ -3,6 +3,7 @@
 /public/storage
 /public/file_pengajuan
 /public/file_siswa
+/public/file
 /storage/*.key
 /vendor
 /.idea

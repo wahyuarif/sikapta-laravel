@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 
-                    <input id="nim" type="nim" placeholder="Your Name" class="form-control form-control-user {{ $errors->has('nim') ? ' has-error' : '' }}" name="nim" value="{{ old('nim') }}" autofocus>
+                    <input id="nim" type="nim" placeholder="Your Nim" class="form-control form-control-user {{ $errors->has('nim') ? ' has-error' : '' }}" name="nim" value="{{ old('nim') }}" autofocus>
 
                     @if ($errors->has('nim'))
                         <div class="invalid-feedback">
