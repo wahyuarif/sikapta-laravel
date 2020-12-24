@@ -37,6 +37,12 @@
                 <strong>{{ $msg }}</strong>
             </div>
             @endif
+            @if ($msg = Session::get('success'))
+            <div class="mt-2 alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ $msg }}</strong>
+            </div>
+            @endif
 
 
         <div class="card o-hidden border-0 shadow-lg my-5">
