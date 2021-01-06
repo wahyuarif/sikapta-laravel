@@ -14,7 +14,7 @@
 <div class="alert alert-primary" role="alert">
   <h4 class="alert-heading">Pengajuan Diterima</h4>
   <p>
-    Pengajuan dengan judul <b>{{ $terima[0]->judul }}</b> telah diterima oleh kaprodi silahkan ke menu bimbinan untuk melakukan bimbingan
+    Pengajuan dengan judul <b>{{ $terima[0]->judul }}</b> telah diterima pada {{ $terima[0]->created_at }} oleh kaprodi silahkan ke menu bimbinan untuk melakukan bimbingan
   </p>                 
   <hr>
     <a href="{{ route('bimbingan.mahasiswa') }}" class="btn btn-primary btn-sm">Bimbingan</a>

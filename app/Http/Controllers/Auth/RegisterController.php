@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
 use App\Models\User;
+use App\Mahasiswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Symfony\Component\HttpFoundation\Request;
 
 class RegisterController extends Controller
 {
@@ -20,23 +23,53 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    // use RegistersUsers;
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function register(Request $request)
+    {
+        
+        $this->validate($request,[
+            'nim' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:4|confirmed',
+        ]);
+
+
+
+
+        $mhs = Mahasiswa::where('nim', $request['nim'])->first();
+        $user = User::where('mahasiswa_id', $mhs['id'])->first();
+        
+        if ($user['id'] != null) {
+            Session::flash('msg', 'Nim Anda Sudah terdafatar silahkan login');
+            return redirect()->back()->withInput($request->only('email', 'nim'));
+        }
+
+        if ($mhs['nim'] == null){
+            Session::flash('msg', 'Nim Anda Tidak Terdaftar di Database Kami');
+            return redirect()->back()->withInput($request->only('email', 'nim'));
+        }else{
+
+            User::create([
+                'mahasiswa_id' => $mhs['id'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password']),
+            ]);
+    
+            Session::flash('success', 'Berhasil membuat akun , silahkan Login');
+    
+            return redirect('login');
+        }
+
     }
 
     /**
@@ -47,11 +80,13 @@ class RegisterController extends Controller
          */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'nim' => 'required|string|max:255',
+            'nim' => 'required|string|max:255|unique:mahasiswas',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4|confirmed',
         ]);
+
     }
 
     /**
@@ -60,17 +95,26 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data, $id)
-    {
+    // protected function create(array $data)
+    // {
 
-        // dd($id);
-
-        return User::create([
-            'mahasiswa_id' => $id,
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+    //     // dd($id);
+    //     $mhs = Mahasiswa::where('nim', $data['nim'])->first();
 
 
-    }
+    //     if ($mhs['nim'] == null) {
+    //         Session::flash('msg', 'Nim Anda Tidak Terdaftar di Database Kami');
+    //         redirect()->back();
+    //         return false;
+    //     }else{
+    //         return User::create([
+    //             'mahasiswa_id' => $mhs['id'],
+    //             'email' => $data['email'],
+    //             'password' => bcrypt($data['password']),
+    //         ]);
+    //     }
+        
+
+
+    // }
 }
