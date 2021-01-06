@@ -21,7 +21,8 @@ class CreateMahasiswasTable extends Migration
             $table->integer('prodi_id')->unsigned();
             $table->foreign('prodi_id')
                 ->references('id')
-                ->on('prodis');
+                ->on('prodis')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->enum('status', ['y', 't']);
             $table->timestamps();
         });

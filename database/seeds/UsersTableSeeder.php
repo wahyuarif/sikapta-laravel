@@ -35,6 +35,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'kaprodi@mail.com',
             'password' => bcrypt('password')
         ];
+
         $dosen = [
             'nik' => '201924140912',
             'nm_dosen' => 'Pak Muslim',

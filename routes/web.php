@@ -16,9 +16,12 @@
 use App\Bimbingan;
 use App\Pengajuan;
 use Illuminate\Support\Facades\Route;
+// tambahan
+Route::get('uye', ['uses'=>'PostController@datatable']);
+Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);
 
 
-
+// endtambahan
 Route::get('/', function () {
     return view('welcome');
 });
@@ -48,6 +51,9 @@ Route::prefix('admin')->group(function() {
     Route::post('/password/email', 'AuthAdmin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset/{token}', 'AuthAdmin\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'AuthAdmin\ResetPasswordController@reset');
+
+    //tambahan
+    Route::get('/mahasiswa', 'AdminController@viewDataMahasiswa')->name('admin.mahasiswa');
 });
 /**
  * 

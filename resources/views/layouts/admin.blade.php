@@ -59,7 +59,26 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            <!-- Heading Users-->
+            <div class="sidebar-heading">
+                Users
+            </div>
+
+            <li class="nav-item {{ set_active('sks.index') }}">
+                <a class="nav-link" href="{{route('sks.index')}}">
+                    <i class="fas fa-user-graduate"></i> 
+                    <span>Mahasiswa</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Dosen</span></a>
+            </li>
+
+            <!-- End users-->
+
+
             <div class="sidebar-heading">
                 Master
             </div>
@@ -72,12 +91,22 @@
                     <span>Charts</span></a>
             </li>
 
+            <div class="sidebar-heading">
+                utility
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fa fa-tools"></i>
+                    <span>Settings SKS</span></a>
+            </li>
+
+
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>Konfirmasi Pembayaran</span></a>
             </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -175,7 +204,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle"  src="img/undraw_profile_1.svg"
                                             alt="">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -187,7 +216,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="img/undraw_profile_2.png"
                                             alt="">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -199,7 +228,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="img/undraw_profile_2.png"
                                             alt="">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -233,7 +262,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="img/undraw_profile_1.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -335,6 +364,20 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
+
+     
+     <!-- Page level plugins -->
+     <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+     <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+     {{-- <script src="js/demo/datatables-demo.js"></script>
+     
+            $(document).ready(function() {
+        $('#dataTable').DataTable();
+        });
+     
+     
+     --}}
 
 </body>
 

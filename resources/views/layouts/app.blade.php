@@ -22,6 +22,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <!-- other -->
+    <link href="/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    
 </head>
 <body>
     <div id="app">
@@ -52,7 +58,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->mahasiswa->nama }} <i class="fas fa-user"></i>
+                            {{-- {{ Auth::user()->mahasiswa->nama }} <i class="fas fa-user"></i> --}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a 
@@ -93,5 +99,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js')}}"></script> --}}
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
 </body>
 </html>
