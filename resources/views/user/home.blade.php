@@ -141,7 +141,7 @@
                             <img src="{{ asset('icon/svg/accept.svg') }}" alt="" class="img-fluid" width="100">
                         </div>
                         <div class="col-6 d-flex-row ">
-                        <h4 class="text-left font-weight-bold text-primary">Persyaratan</h4>
+                        <h4 class="text-left font-weight-bold text-primary">Alur Pengajuan KP dan TA</h4>
                             <p class="text-left">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>

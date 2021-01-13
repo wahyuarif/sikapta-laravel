@@ -143,14 +143,14 @@ $bimbinganTA =  Bimbingan::where([
                 </a>
                 <div id="collapsePengajuan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Kerja Praktek</a>
-                        <a class="collapse-item" href="buttons.html">Tugas Akhir</a>
+                        <a class="collapse-item {{ set_active('pengajuanKP.formPengajuan') }}" href="{{ route('pengajuanKP.formPengajuan') }}">Kerja Praktek</a>
+                        <a class="collapse-item {{ set_active('pengajuanTA.formPengajuan')}}" href="{{route('pengajuanTA.formPengajuan')}}">Tugas Akhir</a>
                     </div>
                 </div>
             </li>
             <!--Bimbingan-->
-            <li class="nav-item {{ set_active('bimbingan.dosen') }}">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ set_active('bimbingan.mahasiswa') }}">
+                <a class="nav-link" href="{{ route('bimbingan.mahasiswa') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bimbingan</span></a>
             </li>
@@ -377,7 +377,7 @@ $bimbinganTA =  Bimbingan::where([
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -390,29 +390,54 @@ $bimbinganTA =  Bimbingan::where([
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a href="#"
+                    <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                            document.getElementById('dosen-logout-form').submit();">
+                            document.getElementById('user-logout-form').submit();">
                         Logout
                     </a>
 
-                    <form id="dosen-logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                    <form id="user-logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    <div id="app">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Auth::user()->mahasiswa->nama }} <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a 
+                href="{{ route('logout') }}"
+                class="dropdown-item"
+                    onclick="event.preventDefault();
+                        document.getElementById('user-logout-form').submit();">
+                    Logout
+                </a>
+                <form id="user-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+            </li>
+        </ul>
+
     </div>
+    
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script> --}}
 
 </body>
 

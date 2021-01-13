@@ -14,8 +14,13 @@
 <div class="alert alert-primary" role="alert">
   <h4 class="alert-heading">Pengajuan Diterima</h4>
   <p>
-    Pengajuan dengan judul <b>{{ $terima[0]->judul }}</b> telah diterima pada {{ $terima[0]->created_at }} oleh kaprodi silahkan ke menu bimbinan untuk melakukan bimbingan
-  </p>                 
+    Pengajuan dengan judul <b>{{ $terima[0]->judul }}</b> telah diterima pada {{ $terima[0]->created_at }} oleh kaprodi silahkan ke menu bimbinan untuk melakukan bimbingan. Berlaku hingga: 
+  </p>
+  <p class="mb-3">
+    <code>
+        * Jika melewati batas waktu yang ditentukan, mahasiswa harus melakukan pembayaran untuk perpanjangan jika layak untuk diperpanjang atau pengantian judul dengan melakukan pengajuan baru.
+    </code>
+  </p>             
   <hr>
     <a href="{{ route('bimbingan.mahasiswa') }}" class="btn btn-primary btn-sm">Bimbingan</a>
     {{-- <a href="{{ route('bimbinganfile') }}" class="btn btn-primary btn-sm">Lembar Bimbingan Offline</a> --}}
