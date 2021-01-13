@@ -47,8 +47,15 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password')
         ];
 
+        $user = [
+            'mahasiswa_id' => '2',
+            'email' => 'wahyu@mail.com',
+            'password' => bcrypt('123456')
+        ];    
+
         Admin::insert($admin);
         Dosen::insert($dosen);
         Dosen::insert($kaprodi);
+        User::insert($user);
     }
 }

@@ -34,7 +34,10 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/persyaratan', 'HomeController@persyaratan')->name('persyaratan');
 Route::get('/tolak', 'HomeController@tolak')->name('home.tolak');
-Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::post('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
+
+//login
+
 
 Auth::routes();
 /**
