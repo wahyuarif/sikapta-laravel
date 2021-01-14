@@ -11,6 +11,8 @@
     Akhir
   </p>                 
   <hr>
+    <a href="{{ route('pengajuanTA.formPengajuan') }}" class="btn btn-primary btn-sm">Cetak Lembar Bimbingan</a>
+    </a>
     <a href="{{ route('pengajuanTA.formPengajuan') }}" class="btn btn-primary btn-sm">Pengajuan TA</a>
     </a>
   
@@ -61,8 +63,7 @@
                             </table>
 
                             <h4 class="bold">Revisi</h4>
-
-
+                            
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -71,10 +72,12 @@
                                         <th scope="col">Document Revisi</th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
-                                @foreach($bimbingan->revisi as $revisi)
+                                @foreach($bimbingan->revisi as $index=>$revisi)
+                              
                                   <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{$index+1}}</th>
                                     <td>{{($revisi->catatan)}}</td>
                                     <td>{{$revisi->file_revisi}}</td>
                                   </tr>

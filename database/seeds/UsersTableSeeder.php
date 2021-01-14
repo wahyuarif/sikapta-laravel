@@ -19,6 +19,26 @@ class UsersTableSeeder extends Seeder
         Admin::truncate();
         Dosen::truncate();
 
+        if(DB::table('users')->get()->count() == 0){
+
+            DB::table('users')->insert([
+                [
+                    'mahasiswa_id' => '1',
+                    'email' => 'slamet@mail.com',
+                    'password' => bcrypt('123456')
+                ],
+
+                [
+
+                    'mahasiswa_id' => '2',
+                    'email' => 'wahyu@mail.com',
+                    'password' => bcrypt('123456')
+                ]
+
+            ]);
+
+        } else { echo "\e[31mTable is not empty, therefore NOT "; }
+
         $admin = [
             'name' => 'Admin',
             'email' => 'admin@mail.com',
@@ -47,15 +67,15 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password')
         ];
 
-        $user = [
-            'mahasiswa_id' => '2',
-            'email' => 'wahyu@mail.com',
-            'password' => bcrypt('123456')
-        ];    
+        // $user = [
+        //     'mahasiswa_id' => '2',
+        //     'email' => 'wahyu@mail.com',
+        //     'password' => bcrypt('123456')
+        // ];    
 
         Admin::insert($admin);
         Dosen::insert($dosen);
         Dosen::insert($kaprodi);
-        User::insert($user);
+        // User::insert($user);
     }
 }

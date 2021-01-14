@@ -21,13 +21,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Data SKS Mahasiswa</div>
-
-                <div class="panel-body">
+                <p>
+                  <div class="panel-body">
                     <a href="{{ route('sks.exportExcel') }}" class="btn btn-success">Export Excel</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#impotrModal">
                         Import Excel
                     </button>
-                </div>
+                  </div>
+                </p>
 
                 <table class="table">
                 <thead>
@@ -39,9 +40,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($sks as $datasks)
+                    @foreach($sks as $index=>$datasks)
                         <tr>
-                            <th scope="row">-</th>
+                            <th scope="row">{{$index+1}}</th>
                             <td> {{ $datasks['nim'] }} </td>
                             <td> {{ $datasks['nama'] }} </td>
                             <td> {{ $datasks['jml_sks'] }} </td>

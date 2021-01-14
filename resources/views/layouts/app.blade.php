@@ -1,45 +1,5 @@
-<?php
-
-use App\Bimbingan;
-use App\Mahasiswa;
-use App\Pengajuan;
-use Illuminate\Support\Facades\Auth;
-
-$mhs = Mahasiswa::all()->count();
-$pengajuanKP = Pengajuan::where([
-    'dosen_id' => Auth::user()->id,
-    'status' => 'Pengajuan',
-    'jns_pengajuan' => 'KP'
-])->count();
-$pengajuanTA = Pengajuan::where([
-    'dosen_id' => Auth::user()->id,
-    'status' => 'Pengajuan',
-    'jns_pengajuan' => 'TA'
-])->count();
-
-$bimbinganKP =  Bimbingan::where([
-    'dosen_id' => Auth::user()->id,
-    'status' => 'Bimbingan'
-])->whereHas('pengajuan', function($query){
-    return $query->where('jns_pengajuan','=','KP');
-})
-->whereNotNull('file_bimbingan')
-->count();
-
-$bimbinganTA =  Bimbingan::where([
-    'dosen_id' => Auth::user()->id,
-    'status' => 'Bimbingan'
-])->whereHas('pengajuan', function($query){
-    return $query->where('jns_pengajuan','=','TA');
-})
-->whereNotNull('file_bimbingan')
-->count();
-
-
-
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
 
@@ -49,7 +9,8 @@ $bimbinganTA =  Bimbingan::where([
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sikapta Unsiq</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -101,38 +62,6 @@ $bimbinganTA =  Bimbingan::where([
             <div class="sidebar-heading">
                 Menu
             </div>
-
-
-            <!-- Nav Item - Charts -->
-            @if(Auth::user()->jabatan == 'kaprodi')
-            <li class="nav-item {{ set_active('pengajuanKP') }}">
-                <a class="nav-link" href="{{ route('pengajuanKP') }}">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Pengajuan Kerja Praktek</span>
-                    @if($pengajuanKP >= 1)
-                    <span class="badge badge-danger badge-counter">{{ $pengajuanKP }}</span>
-                    @endif
-                </a>
-            </li>
-            <li class="nav-item {{ set_active('pengajuanTA') }}">
-                <a class="nav-link" href="{{ route('pengajuanTA') }}">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Pengajuan Tugas Akhir</span>
-                    @if($pengajuanTA >= 1)
-                    <span class="badge badge-danger badge-counter">{{ $pengajuanTA }}</span>
-                    @endif
-                </a>
-            </li>
-            @endif
-            <li class="nav-item {{ set_active('bimbingan.dosen') }}">
-                <a class="nav-link" href="{{ route('bimbingan.dosen') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Profile</span>
-                    @if($bimbinganKP >= 1)
-                    <span class="badge badge-danger badge-counter">{{ $bimbinganKP }}</span>
-                    @endif
-                </a>
-            </li>
             
             <!--Pengajuan-->
             <li class="nav-item">
@@ -342,7 +271,7 @@ $bimbinganTA =  Bimbingan::where([
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container">
                     
                    
                     
