@@ -68,6 +68,15 @@
                             140
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col">
+                            Tagihan
+                        </div>
+                        <div class="col-7">
+                            <b>Terbayar</b>
+                        </div>
+                    </div>
                 </p>
                 
                 <div class="mt-4 text-center small">

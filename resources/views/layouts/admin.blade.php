@@ -103,9 +103,9 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-money-bill-wave"></i>
-                    <span>Konfirmasi Pembayaran</span></a>
+                    <span>Transaksi</span></a>
             </li>
 
             <!-- Divider -->
@@ -115,7 +115,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
         <!-- End of Sidebar -->
 

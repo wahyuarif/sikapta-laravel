@@ -101,6 +101,11 @@ $bimbinganTA =  Bimbingan::where([
             <div class="sidebar-heading">
                 Menu
             </div>
+            <li class="nav-item {{set_active('sks.index')}}">
+                <a class="nav-link" href="{{route('sks.index')}}">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Nilai</span></a>
+            </li>
 
 
             <!-- Nav Item - Charts -->

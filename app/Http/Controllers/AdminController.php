@@ -29,11 +29,7 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-    //tambahan
-    // public function tes(){
-    //     $mhs = Mahasiswa::all();
-    //     return $mhs;
-    // }
+
     public function viewDataMahasiswa(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
@@ -46,5 +42,16 @@ class AdminController extends Controller
 
         return view('user.mahasiswa')->with(compact('html'));
     }
+
+    // public function viewDataDosen(Request $request, Builder $htmlBuilder)
+    // {
+    //     if($request->ajax()) {
+    //         $dosen = Dosen::select(['nm_dosen', 'fakultas', 'prodi', 'jabatan']);
+    //         return Datatables::of($dosen)->make(true);
+    //     }
+
+    //     $html = $htmlBuilder
+    //             ->addColumn(['data' => ])
+    // }
 }
 

@@ -11,7 +11,7 @@
     Akhir
   </p>                 
   <hr>
-    <a href="{{ route('pengajuanTA.formPengajuan') }}" class="btn btn-primary btn-sm">Cetak Lembar Bimbingan</a>
+    <a href="" class="btn btn-primary btn-sm">Cetak Lembar Bimbingan</a>
     </a>
     <a href="{{ route('pengajuanTA.formPengajuan') }}" class="btn btn-primary btn-sm">Pengajuan TA</a>
     </a>

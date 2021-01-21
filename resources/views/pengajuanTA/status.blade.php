@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mt-3">
     <div class="col-12">
-        <h4>Pengajuan Kerja Praktek</h4>
+        <h4>Pengajuan Tugas Akhir</h4>
         <hr>
     </div>
 </div>

@@ -83,8 +83,14 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bimbingan</span></a>
             </li>
-
-
+            <div class="sidebar-heading">
+                Transaksi
+            </div>
+            <li class="nav-item {{ set_active('transaksi.mahasiswa') }}">
+                <a class="nav-link" href="{{ route('transaksi.mahasiswa')}}">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Status Pembayaran</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

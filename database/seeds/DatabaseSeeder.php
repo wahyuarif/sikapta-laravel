@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
          $this->call(MahasiswaTableSeeder::class);
          $this->call(UsersTableSeeder::class);
          $this->call(SksTableSeeder::class);
+         $this->call(TransaksiTableSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

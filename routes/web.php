@@ -17,8 +17,8 @@ use App\Bimbingan;
 use App\Pengajuan;
 use Illuminate\Support\Facades\Route;
 // tambahan
-Route::get('uye', ['uses'=>'PostController@datatable']);
-Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);
+// Route::get('uye', ['uses'=>'PostController@datatable']);
+// Route::get('datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);
 
 
 // endtambahan
@@ -132,3 +132,11 @@ Route::prefix('pengajuanTA')->group(function(){
     })->name('pengajuan.tugasAkhirSecondSecond');
     Route::post('/tugasAkhir', 'PengajuanTAController@taSubmit')->name('pengajuanTA.taSubmit');
 });
+
+// Transaksi start dicek lagi
+Route::prefix('transaksi')->group(function(){
+    // Route::get('/', 'TransaksiController@index')->name('transaksi.mahasiswa');
+    Route::get('/mahasiswa','TransaksiController@create')->name('transaksi.mahasiswa');
+    Route::post('/mahasiswa','TransaksiController@store')->name('transaksi.store');
+});
+// transaksi end
