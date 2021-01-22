@@ -102,8 +102,8 @@
                     <i class="fa fa-tools"></i>
                     <span>Settings SKS</span></a>
             </li>
-            <li class="nav-item {{ set_active('api.transaksi') }}">
-                <a class="nav-link" href="{{ route('api.transaksi') }}">
+            <li class="nav-item {{ set_active('transaksi.index') }}">
+                <a class="nav-link" href="{{ route('transaksi.index') }}">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>Transaksi</span></a>
             </li>
@@ -368,12 +368,12 @@
         <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
 
         <!-- Page level plugins -->
-        {{-- <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-         --}}
-        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+         
+        
 
+        @yield('script')
 
 
 </body>

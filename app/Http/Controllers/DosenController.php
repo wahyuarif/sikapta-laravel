@@ -24,4 +24,10 @@ class DosenController extends Controller
     {
         return view('dosen.home');
     }
+
+    public function showDosen()
+    {
+        $showDosen = Dosen::all();
+        return view('dosen.data');
+    }
 }

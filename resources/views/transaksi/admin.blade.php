@@ -8,7 +8,7 @@
                 <h4>Transaksi</h4>
             </div>
             <div class="card-body">
-                <table id="transaksi-table" class="display">
+                <table id="transaksi-table" class="table table-striped table-bordered table-sm"> 
                     <thead>
                         <tr>
                             <th width="30">No</th>
@@ -18,11 +18,9 @@
                             <th>Bukti Bayar</th>
                             <th>tanggal</th>
                             <th>status</th>
-                            <th></th>             
+                            <th>Action</th>             
                         </tr>
                     </thead>
-                    <tbody></tbody>
-
                 </table>
             </div>
         </div>
@@ -33,6 +31,22 @@
 
 @section('script')
 <script type="text/javascript">
+    $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+
+    // $('#button-add').click(function () {
+    //     $('#button-simpan').val("create-post"); //valuenya menjadi create-post
+    //     $('#id').val(''); //valuenya menjadi kosong
+    //     $('#form-tambah-edit').trigger("reset"); //mereset semua input dll didalamnya
+    //     $('#modal-judul').html("Tambah Pegawai Baru"); //valuenya tambah pegawai baru
+    //     $('#tambah-edit-modal').modal('show'); //modal tampil
+    // });
+
     $(document).ready(function(){
         $('#transaksi-table').DataTable({
             processing  :true,
@@ -54,8 +68,6 @@
 
         });
     });
-</script>    
+</script>   
 @endsection
-
-     
      

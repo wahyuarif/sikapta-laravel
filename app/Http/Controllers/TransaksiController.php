@@ -26,10 +26,16 @@ class TransaksiController extends Controller
     {
         $list_transaksi = Transaksi::all();
         if($request->ajax()){
-            return datatables()->of($list_transaksi)->make(true);
+            return datatables()->of($list_transaksi)
+            // ->addColumn('action', function($data){
+        
+
+            // })
+            // ->rawColumn(['action'])
+            // ->addIndextColumn()
+            ->make(true);
         }
-        return view('transaksi.admin');
-        // response()->json($list_transaksi);
+        return view('transaksi.admin');    
     }
 
     /**
