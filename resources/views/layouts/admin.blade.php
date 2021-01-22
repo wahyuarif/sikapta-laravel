@@ -23,6 +23,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    
 
 </head>
 
@@ -100,10 +102,8 @@
                     <i class="fa fa-tools"></i>
                     <span>Settings SKS</span></a>
             </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ set_active('api.transaksi') }}">
+                <a class="nav-link" href="{{ route('api.transaksi') }}">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>Transaksi</span></a>
             </li>
@@ -354,29 +354,27 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   
+    
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-     
-     <!-- Page level plugins -->
-     <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-     <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
 
-     {{-- <script src="js/demo/datatables-demo.js"></script>
-     
-            $(document).ready(function() {
-        $('#dataTable').DataTable();
-        });
-     
-     
-     --}}
+        <!-- Page level plugins -->
+        {{-- <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+         --}}
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
 
 </body>
 

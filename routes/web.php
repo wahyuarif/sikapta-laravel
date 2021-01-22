@@ -134,9 +134,12 @@ Route::prefix('pengajuanTA')->group(function(){
 });
 
 // Transaksi start dicek lagi
+    Route::resource('transaksi', 'TransaksiController');
+    Route::get('api.transaksi', 'TransaksiController@apiTransaksi')->name('api.transaksi');
+
 Route::prefix('transaksi')->group(function(){
-    // Route::get('/', 'TransaksiController@index')->name('transaksi.mahasiswa');
-    Route::get('/mahasiswa','TransaksiController@create')->name('transaksi.mahasiswa');
+    Route::get('/mahasiswa','TransaksiController@frmTrs')->name('transaksi.mahasiswa');
     Route::post('/mahasiswa','TransaksiController@store')->name('transaksi.store');
+    // Route::get('/admin','TransaksiController@index')->name('transaksi.admin');
 });
 // transaksi end

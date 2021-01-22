@@ -29,7 +29,6 @@ class CreateTransaksisTable extends Migration
     }
 
     /**
-     * 
      * Reverse the migrations.
      *
      * @return void

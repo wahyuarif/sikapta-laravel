@@ -6,18 +6,30 @@ use Session;
 use Illuminate\Http\Request;
 use App\Mahasiswa;
 use Illuminate\Support\Facades\Auth;
-// use Symfony\Component\HttpFoundation\Session\Session;
+use Yajra\DataTables\Datatables;
 
 class TransaksiController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct()
     {
-        
+        $this->middleware(['auth:admin']);
+    }
+
+    public function index(Request $request)
+    {
+        $list_transaksi = Transaksi::all();
+        if($request->ajax()){
+            return datatables()->of($list_transaksi)->make(true);
+        }
+        return view('transaksi.admin');
+        // response()->json($list_transaksi);
     }
 
     /**
@@ -25,9 +37,14 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function frmTrs()
     {
         return view ('transaksi.mahasiswa');
+    }
+
+    public function showTransaksiAdmin()
+    {
+        // return view ('transaksi.admin');
     }
 
     /**
@@ -119,5 +136,18 @@ class TransaksiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function apiTransaksi()
+    {
+        $transaksi = Transaksi::all();
+
+        return Datatables::of($transaksi)
+        ->addColumn('action', function($transaksi){
+            return
+            '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphican-eye-open"></i>Show</a>' .
+            '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphican-eye-open"></i>Edit</a>' .
+            '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphican-eye-open"></i>Delete</a>';
+        })->make(true);
     }
 }

@@ -230,7 +230,7 @@ return [
 
         // other
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Datatables' => 'Yajra\Datatables\Facades\Datatables',
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 
