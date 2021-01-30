@@ -38,74 +38,8 @@
                     </div>
                 @endif
 
+                <div class="timeline">
                 @foreach($bimbingans as $bimbingan)
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Bab {{ $bimbingan->bab }} </h6>
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <td>Dosen Pembimbing</td>
-                                    <td>:</td>
-                                    <td>{{ $bimbingan->dosen->nm_dosen }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>:</td>
-                                    <td>{{ $bimbingan->dosen->email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Status</td>
-                                    <td>:</td>
-                                    <td>{{ $bimbingan->status }}</td>
-                                </tr>
-                            </table>
-
-                            <h4 class="bold">Revisi</h4>
-                            
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Catatan</th>
-                                        <th scope="col">Document Revisi</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                @foreach($bimbingan->revisi as $index=>$revisi)
-                              
-                                  <tr>
-                                    <th scope="row">{{$index+1}}</th>
-                                    <td>{{($revisi->catatan)}}</td>
-                                    <td>{{$revisi->file_revisi}}</td>
-                                  </tr>
-                                  
-                                @endforeach
-                                </tbody>
-                              </table>
-
-                            
-                            @if($bimbingan->status == 'Bimbingan' AND $bimbingan->file_bimbingan == null)
-                            <p>
-                                Note: Pilih Upload jika akan melakukan bimbingan secara online atau pilih buat janji untuk bimbingan secara tatap muka
-                            </p>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#upload{{ $bimbingan->bab }}">
-                                    Upload File
-                                </button></a>
-                               
-                            @endif
-
-                            @if (count($bimbingan->revisi) > 0 AND $bimbingan->status == 'Revisi')
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadRevisi{{ $bimbingan->bab }}">
-                                Upload Revisi
-                            </button></a>
-                            @endif
-                            
-
-                        </div>
-                    </div>
                     {{-- Modal Upload --}}
                     <div class="modal fade" id="upload{{ $bimbingan->bab }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -166,7 +100,72 @@
                           </div>
                         </div>
                       </div>
+
+                      <div class="timeline-month">
+                        Bab {{ $bimbingan->bab }}
+                      </div>
+                      <div class="timeline-section">
+                        <div class="timeline-date">
+                          Status: {{ $bimbingan->status }}
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="timeline-box">
+                              <div class="box-content">
+                                <a class="btn btn-xs btn-default pull-right">Details</a>
+                                <div class="box-item"><strong>Dosen Pembimbing</strong>: {{ $bimbingan->dosen->nm_dosen }}</div>
+                                <div class="box-item"><strong>Email</strong>: {{ $bimbingan->dosen->email }}</div>
+                                <div class="box-item"><strong>Status</strong>: {{ $bimbingan->status }}</div>
+
+                                <a class="btn btn-xs btn-default pull-right">Revisi</a>
+                                <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Catatan</th>
+                                        <th scope="col">Document Revisi</th>
+                                    </tr>
+                                  </thead>
+                                  
+                                  <tbody>
+                                  @foreach($bimbingan->revisi as $index=>$revisi)
+                                
+                                    <tr>
+                                      <th scope="row">{{$index+1}}</th>
+                                      <td>{{($revisi->catatan)}}</td>
+                                      <td>{{$revisi->file_revisi}}</td>
+                                    </tr>
+                                    
+                                  @endforeach
+                                  </tbody>
+                                </table>
+
+                              </div>
+
+                              <div class="box-footer">
+                                @if($bimbingan->status == 'Bimbingan' AND $bimbingan->file_bimbingan == null)
+                                <p>
+                                    Note: Pilih Upload jika akan melakukan bimbingan secara online atau pilih buat janji untuk bimbingan secara tatap muka
+                                </p>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#upload{{ $bimbingan->bab }}">
+                                        Upload File
+                                    </button></a>
+                                  
+                                @endif
+
+                                @if (count($bimbingan->revisi) > 0 AND $bimbingan->status == 'Revisi')
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadRevisi{{ $bimbingan->bab }}">
+                                    Upload Revisi
+                                </button></a>
+                                @endif
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
                 @endforeach
+                </div>
             </div>
         </div>
     </div>
