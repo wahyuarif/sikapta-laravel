@@ -24,7 +24,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-    
+
 
 </head>
 
@@ -54,10 +54,6 @@
                     <span>Dashboard</span></a>
             </li>
 
-    
-
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -68,7 +64,7 @@
 
             <li class="nav-item {{ set_active('sks.index') }}">
                 <a class="nav-link" href="{{route('sks.index')}}">
-                    <i class="fas fa-user-graduate"></i> 
+                    <i class="fas fa-user-graduate"></i>
                     <span>Mahasiswa</span></a>
             </li>
 
@@ -293,10 +289,10 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
-                   
-                    
-                    @yield('content')   
+
+
+
+                    @yield('content')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -349,13 +345,15 @@
                     <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
+
+
                 </div>
             </div>
         </div>
     </div>
 
-   
-    
+
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -370,8 +368,8 @@
         <!-- Page level plugins -->
         <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-         
-        
+
+
 
         @yield('script')
 

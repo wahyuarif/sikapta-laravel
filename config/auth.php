@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
         ],
 
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        // i dont know for what
+        'api-user' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -55,6 +65,7 @@ return [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+
         'dosen' => [
             'driver' => 'session',
             'provider' => 'dosens',

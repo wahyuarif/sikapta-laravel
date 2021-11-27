@@ -89,10 +89,4 @@ class LoginController extends Controller
 
         return redirect('/');
     }
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 }

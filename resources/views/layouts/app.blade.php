@@ -29,7 +29,7 @@
 
 <body id="page-top">
 
-    
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -63,7 +63,7 @@
             <div class="sidebar-heading">
                 Menu
             </div>
-            
+
             <!--Pengajuan-->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengajuan"
@@ -279,10 +279,10 @@
 
                 <!-- Begin Page Content -->
                 <div class="container">
-                    
-                   
-                    
-                    @yield('content')   
+
+
+
+                    @yield('content')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -331,10 +331,6 @@
                             document.getElementById('user-logout-form').submit();">
                         Logout
                     </a>
-
-                    <form id="user-logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
                 </div>
             </div>
         </div>
@@ -347,7 +343,7 @@
                 {{ Auth::user()->mahasiswa->nama }} <i class="fas fa-user"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a 
+                <a
                 href="{{ route('logout') }}"
                 class="dropdown-item"
                     onclick="event.preventDefault();
@@ -362,18 +358,18 @@
         </ul>
 
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('js/app.js') }}"></script>
-    {{-- <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script> -->
+    <!-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> -->
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script> -->
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script> --}}
+    <!-- <script src="{{ asset('js/sb-admin-2.min.js')}}"></script> -->
 
 </body>
 

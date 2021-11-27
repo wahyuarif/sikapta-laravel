@@ -34,15 +34,15 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/persyaratan', 'HomeController@persyaratan')->name('persyaratan');
 Route::get('/tolak', 'HomeController@tolak')->name('home.tolak');
-Route::post('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
+Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 //login
 
 
 Auth::routes();
 /**
- * 
- * 
+ *
+ *
  * Admin auth route
  */
 Route::prefix('admin')->group(function() {
@@ -59,8 +59,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/mahasiswa', 'AdminController@viewDataMahasiswa')->name('admin.mahasiswa');
 });
 /**
- * 
- * 
+ *
+ *
  * Auth kaprodi route
  */
 Route::prefix('dosen')->group(function() {
@@ -74,8 +74,8 @@ Route::prefix('dosen')->group(function() {
     Route::post('/password/reset', 'AuthDosen\ResetPasswordController@reset');
 });
 /**
- * 
- * 
+ *
+ *
  * SKS Route
  */
 Route::prefix('sks')->group(function(){
