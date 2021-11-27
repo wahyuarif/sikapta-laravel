@@ -24,6 +24,7 @@
                     @endif
                 
             </div>
+    
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 
                     <input id="email" type="email" placeholder="Enter Email Address..." class="form-control form-control-user" name="email" value="{{ old('email') }}" autofocus>
