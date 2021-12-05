@@ -53,9 +53,7 @@ $bimbinganTA =  Bimbingan::where([
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- bootstrap -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -377,7 +375,7 @@ $bimbinganTA =  Bimbingan::where([
                     <a href="#"
                         onclick="event.preventDefault();
                             document.getElementById('dosen-logout-form').submit();">
-                        Logout
+                        <button class="btn btn-primary" type="button" data-dismiss="modal">Logout</button>
                     </a>
 
                     <form id="dosen-logout-form" action="{{ route('dosen.logout') }}" method="POST" style="display: none;">
