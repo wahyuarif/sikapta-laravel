@@ -53,6 +53,17 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+        $login = null;
+        switch ($request->login_role) {
+            case "dosen":
+                $login = new \App\Http\Controllers\AuthDosen\LoginController();
+                return $login->login($request);
+                break;
+            case "admin":
+                $login = new \App\Http\Controllers\AuthAdmin\LoginController();
+                return $login->login($request);
+                break;
+        }
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'

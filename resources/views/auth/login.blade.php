@@ -1,5 +1,10 @@
 @extends('layouts.auth')
-
+<style>
+    .form-control-user {
+        padding: 0 1rem !important;
+        height: 3rem !important;
+    }
+</style>
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-9">
@@ -34,8 +39,13 @@
                         @endif
                 
                 </div>
-
-
+                <div class="form-group">
+                    <select name="login_role" class="form-control form-control-user">
+                        <option value="mahasiswa">Mahasiswa</option>
+                        <option value="dosen">Dosen</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                     Login
                 </button>
